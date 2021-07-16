@@ -1,0 +1,10 @@
+.header {
+   color: white;
+   background-color: #282c34;
+   position: fixed;
+   top: 0;
+   height: 5vw;
+   width: 100%;
+   text-align: middle center;
+   z-index: 999;
+}

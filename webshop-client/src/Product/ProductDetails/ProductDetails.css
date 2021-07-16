@@ -1,0 +1,55 @@
+.productDetails {
+   border-radius: 5px;
+   box-shadow: 3px 3px 6px gray;
+}
+
+.detailsHeader {
+   box-shadow: 8px 0 black;
+   border-radius: 50px;
+   cursor: pointer;
+}
+
+.detailsHeader:hover {
+   box-shadow: 8px 0 gray;
+   background-color: honeydew;
+}
+
+.detailsHeader:hover:active {
+   box-shadow: 0 0;
+}
+
+.nameHeader {
+   position: relative;
+   left: 12.5%;
+   text-align: center;
+   width: 75%;
+   border-bottom: 2px dotted black;
+}
+
+.productDetails img {
+   max-width: 100%;
+   max-height: 35vw;
+}
+
+.productDetails p {
+   font-size: larger;
+}
+
+.boldPrice {
+   font-weight: 10000;
+   font-style: normal;
+}
+
+.buyButton {
+   width: 100%;
+   box-shadow: 3px 3px;
+}
+
+.buyButton:hover {
+   box-shadow: 3px 3px gray;
+}
+
+.buyButton:hover:active {
+   box-shadow: 0px 0px;
+   transform: translate(3px, 3px);
+}

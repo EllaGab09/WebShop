@@ -1,0 +1,46 @@
+.price {
+   font-style: bold;
+   text-align: right;
+}
+
+.productCard {
+   margin-top: 2vw;
+   cursor: pointer;
+   box-shadow: 3px 3px;
+   height: 120vw;
+}
+
+.productCard > img {
+   height: 75%;
+   width: 100%;
+   object-fit: contain;
+}
+
+.productCard:hover {
+   background-color: darkcyan;
+   box-shadow: 3px 3px gray;
+}
+
+.productCard:hover > .card-title {
+   color: black  !important;
+}
+
+.productCard:hover:active {
+   box-shadow: 0px 0px;
+   transform: translate(3px, 3px);
+}
+
+
+
+@media screen and (min-width:768px) {
+   .productCard {
+      height: 50vw;
+   }
+}
+
+@media screen and (min-width:992px) {
+   .productCard {
+      height: 20vw;
+   }
+}
+
