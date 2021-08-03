@@ -3,9 +3,10 @@
     "",
     "\\IAMApp",
     "\\WebShop",
-    "\\WebShopApp",
-    "\\WebShopApp\\WebShop"
+    "\\WebShop\\WebShop",
+    "\\WebShop\\WebShop\\Controllers",
+    "\\WebShop\\WebShop\\Models"
   ],
-  "SelectedNode": "\\WebShopApp\\WebShopApp.sln",
+  "SelectedNode": "\\WebShop\\WebShop.sln",
   "PreviewInSolutionExplorer": false
 }
