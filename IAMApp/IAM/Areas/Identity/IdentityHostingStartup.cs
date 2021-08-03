@@ -16,13 +16,16 @@ namespace IAM.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<IAMContext>(options =>
+                services.AddDbContext<AppIdentityDbContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("IAMContextConnection")));
 
-                services.AddDefaultIdentity<IAMUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<IAMContext>();
+                //services.AddDefaultIdentity<IAMUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                //    .AddEntityFrameworkStores<AppIdentityDbContext>();
+                services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<AppIdentityDbContext>();
             });
         }
     }
 }
+
