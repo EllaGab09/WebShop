@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "1f7982d9-25b4-485b-9e64-bd0ec1d68733",
+		"name": "WebShopLexicon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "IAM : Acquire a 60 seconds test token (IAM on Azure)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"test@test.com\",\r\n  \"password\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://iam20210802102705.azurewebsites.net/api/Values/getToken60s",
+					"protocol": "https",
+					"host": [
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Values",
+						"getToken60s"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM : Acquire a 7 days test token (IAM on Azure)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"dev@dev.com\",\r\n  \"password\": \"dev\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://iam20210802102705.azurewebsites.net/api/Values/getToken7Days",
+					"protocol": "https",
+					"host": [
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Values",
+						"getToken7Days"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WebShop : getProducts (WebShop on local host)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44373/api/AuthTest/getProducts",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44373",
+					"path": [
+						"api",
+						"AuthTest",
+						"getProducts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WebShop : Use token on getSectretProducts (WebShop on local host)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImRldkBkZXYuY29tIiwibmJmIjoxNjI2MzUzNjU1LCJleHAiOjE2MjY5NTg0NTUsImlhdCI6MTYyNjM1MzY1NX0.aIDhllurs3J43EEwLSZpBBoOzShodakM_-2Htrgdrmk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44373/api/AuthTest/getSectretProducts",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44373",
+					"path": [
+						"api",
+						"AuthTest",
+						"getSectretProducts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
