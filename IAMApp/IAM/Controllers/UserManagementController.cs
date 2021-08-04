@@ -1,10 +1,13 @@
-﻿using IAM.Models;
+﻿using IAM.Areas.Identity.Data;
+using IAM.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -16,78 +19,41 @@ namespace IAM.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class ValuesController : ControllerBase
+    public class UserManagementController : ControllerBase
     {
-        [HttpGet("getFruits")]
-        [AllowAnonymous]
-        public ActionResult GetFruits()
+        private readonly UserManager<ApplicationUser> userManager;
+
+        public UserManagementController(UserManager<ApplicationUser> userManager)
         {
-            List<string> MyFruits = new List<string>() { "Apples", "Oranges" };
-            return Ok(MyFruits);
+            this.userManager = userManager;
         }
 
-        //[HttpGet("getFruitsAuth")]
-        //public ActionResult GetFruitsAuth()
-        //{
-        //    List<string> MyFruits = new List<string>() { "Organic Apples", "Organic Oranges" };
-        //    return Ok(MyFruits);
-        //}
 
 
-        [HttpPost("getToken60s")]
+        //If username/password is valid, the user is added to the AspNetUsers table.
+        [HttpPost("RegisterUser")]
         [AllowAnonymous]
-        public async Task<ActionResult> GetToken60s([FromBody] LoginCredentials loginCredentials)
+        public async Task<ActionResult> RegisterUser([FromBody] RegisterUser registerUser)
         {
-            if (loginCredentials.Email == "test@test.com" && loginCredentials.Password == "test")
+            Debug.WriteLine("RegisterUser endpoint hit.");
+            if (ModelState.IsValid)
             {
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes("SuperKeyToPlaceInKeyVaultOrSomeGoodPlace");
-                var tokenDescriptor = new SecurityTokenDescriptor
+                var user = new ApplicationUser { UserName = registerUser.Email, Email = registerUser.Email, EmailConfirmed = true };
+                var result = await userManager.CreateAsync(user, registerUser.Password);
+                if (result.Succeeded)
                 {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                        new Claim(ClaimTypes.Name, loginCredentials.Email)
-                        //new Claim(ClaimTypes.Email, identityUser.Email)
-                    }),
-                    Expires = DateTime.UtcNow.AddSeconds(60),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                var tokenString = tokenHandler.WriteToken(token);
-                return Ok(new { Token = tokenString });
+                    Debug.WriteLine("User sussessfuly created");
+                    return Ok("User sussessfuly created");
+                }
+                else
+                {
+                    return BadRequest("Failed to create user. result.Succeeded = false");
+                }
             }
             else
             {
-                return Unauthorized("Try again my friend");
+                return Conflict(" ModelState.IsValid = false ");
             }
         }
-
-        [HttpPost("getToken7Days")]
-        [AllowAnonymous]
-        public async Task<ActionResult> GetToken7Days([FromBody] LoginCredentials loginCredentials)
-        {
-            if (loginCredentials.Email == "dev@dev.com" && loginCredentials.Password == "dev")
-            {
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes("SuperKeyToPlaceInKeyVaultOrSomeGoodPlace");
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                        new Claim(ClaimTypes.Name, loginCredentials.Email)
-                    }),
-                    Expires = DateTime.UtcNow.AddDays(7),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                var tokenString = tokenHandler.WriteToken(token);
-                return Ok(new { Token = tokenString });
-            }
-            else
-            {
-                return Unauthorized("Try again my friend");
-            }
-        }
-
     }
 }

@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace IAM.Areas.Identity.Data
 {
-    // Extending IdentityUser
-    public class ApplicationUser : IdentityUser
+    // Extending IdentityRole
+    public class ApplicationRole : IdentityRole
     {
     }
 }

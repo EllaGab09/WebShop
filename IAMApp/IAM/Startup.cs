@@ -14,12 +14,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
+using IAM.Interfaces;
 
 namespace IAM
 {
     public class Startup
     {
-        //Test
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,10 +31,26 @@ namespace IAM
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ITokenUtils, IAM.Utils.TokenUtils>();
 
-            //JN: Kopia av denna kommer även ligga i controller
-            var key = Encoding.ASCII.GetBytes("SuperKeyToPlaceInKeyVaultOrSomeGoodPlace");
+            //Settings to override the default password requirements when creating new user.
 
+            //NOTE: My settings below are used during dev, ie we have a very week password.
+            //NOTE: My settings below are used during dev, ie we have a very week password.
+            //NOTE: My settings below are used during dev, ie we have a very week password.
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 1;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+            });
+
+
+            //JWT token settings            
+            var key = Encoding.ASCII.GetBytes("SuperKeyToPlaceInKeyVaultOrSomeGoodPlace"); //JN: Kopia av denna kommer även ligga i controller
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

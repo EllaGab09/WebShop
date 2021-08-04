@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "1f7982d9-25b4-485b-9e64-bd0ec1d68733",
+		"_postman_id": "71f18fb3-ac49-4a79-8903-a6259e71bc2f",
 		"name": "WebShopLexicon",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "IAM : Acquire a 60 seconds test token (IAM on Azure)",
+			"name": "IAM 1 : Acquire a 60 seconds test token (IAM on Azure)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -37,7 +37,7 @@
 			"response": []
 		},
 		{
-			"name": "IAM : Acquire a 7 days test token (IAM on Azure)",
+			"name": "IAM 2 : Acquire a 7 days test token (IAM on Azure)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -62,6 +62,139 @@
 						"api",
 						"Values",
 						"getToken7Days"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM 3a : Login as seed admin (IAM on local)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44302/api/Access/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44302",
+					"path": [
+						"api",
+						"Access",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM 3a : Login as seed user (IAM on local)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"user@user.com\",\r\n  \"password\": \"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44302/api/Access/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44302",
+					"path": [
+						"api",
+						"Access",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM Test token against getFruits",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJSb2xlcyI6WyJVc2VyIiwiQWRtaW4iXSwiZXhwIjoxNjI4MDkxODUwLCJpc3MiOiJJQU1BcHAiLCJhdWQiOiJJQU1BcHAtYXVkaWVuY2UifQ.zPx750ETbtHHWSbzWV1tT2et-9j1f0rRegwjKG1aGgY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44302/api/Values/getFruits",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44302",
+					"path": [
+						"api",
+						"Values",
+						"getFruits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM 4 : Register new user (IAM on localHost)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"nalle@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44302/api/UserManagement/RegisterUser",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44302",
+					"path": [
+						"api",
+						"UserManagement",
+						"RegisterUser"
 					]
 				}
 			},

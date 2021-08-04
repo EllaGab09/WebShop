@@ -1,13 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WebShopApp",
-    "\\WebShopApp\\WebShop",
-    "\\WebShopApp\\WebShop\\Data",
-    "\\WebShop\\WebShop",
-    "\\WebShop\\WebShop\\Data",
-    "\\WebShop\\WebShop\\Data\\Migrations"
+    "\\IAMApp",
+    "\\WebShopApp\\WebShop"
   ],
-  "SelectedNode": "\\WebShopApp\\WebShop\\Data\\ApplicationDbContext.cs",
+  "SelectedNode": "\\IAMApp\\IAMApp.sln",
   "PreviewInSolutionExplorer": false
 }

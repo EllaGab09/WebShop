@@ -82,6 +82,56 @@ namespace IAM.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "955bb03f-a866-4e81-97c3-04e84dddec83",
+                            Email = "ADMIN@ADMIN.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.com",
+                            NormalizedUserName = "ADMIN@ADMIN.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAENARq+MDl4qouwx3Y9UNFjE/FJxvJ+ooI/RVa+yFytCzd80WGt6aYyQ1Ywi44F28pg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1aa6e9e5-bd6c-4509-80da-2dcb28d398f4",
+                            TwoFactorEnabled = false,
+                            UserName = "ADMIN@ADMIN.com"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a2fbef0e-93b4-4436-be32-b68ce1d9f552",
+                            Email = "ROOT@ROOT.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ROOT@ROOT.com",
+                            NormalizedUserName = "ROOT@ROOT.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ4Dmw/QEFpeTYRc3aaacwJRPrbLEqaiL3lntEL/G8R//JE5aJAm3rjDwBo8dMJVfA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "afb1d1a7-2b86-41b8-b96c-0b7a82153ed8",
+                            TwoFactorEnabled = false,
+                            UserName = "ROOT@ROOT.com"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "bb4ad9d4-71ab-4cb6-8f5c-eaab99941558",
+                            Email = "USER@USER.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@USER.com",
+                            NormalizedUserName = "USER@USER.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAENDEhJwbqFVxZvRJru4BjG/GtZYVzoPvRK6ZMDxnbwhDzs6+vxAoWVT3WFfDltzhPQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "20128fb9-abaa-400c-ab1f-891ed4d9c21e",
+                            TwoFactorEnabled = false,
+                            UserName = "USER@USER.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -91,6 +141,10 @@ namespace IAM.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -109,6 +163,8 @@ namespace IAM.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -194,6 +250,33 @@ namespace IAM.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "2"
+                        },
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "3"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "3",
+                            RoleId = "1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -213,6 +296,45 @@ namespace IAM.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("IAM.Areas.Identity.Data.ApplicationRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
+
+                    b.HasDiscriminator().HasValue("ApplicationRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            ConcurrencyStamp = "6fab4a96-6d35-4d98-874a-0653c89d2083",
+                            Name = "User"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            ConcurrencyStamp = "1d26bf1c-29cb-4c64-9291-a7d65eab3356",
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            ConcurrencyStamp = "70ba668e-27b4-4335-be3a-fa4294e07096",
+                            Name = "Root"
+                        },
+                        new
+                        {
+                            Id = "4",
+                            ConcurrencyStamp = "022808a7-1851-4f2d-9ff3-defa7b20018e",
+                            Name = "Spare1"
+                        },
+                        new
+                        {
+                            Id = "5",
+                            ConcurrencyStamp = "ae5413ee-8891-41db-99a1-f10a90461ee0",
+                            Name = "Spare2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

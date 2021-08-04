@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IAM.Migrations
 {
-    public partial class AddingIdentity : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,6 +12,7 @@ namespace IAM.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -150,6 +151,40 @@ namespace IAM.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "1", "6fab4a96-6d35-4d98-874a-0653c89d2083", "ApplicationRole", "User", null },
+                    { "2", "1d26bf1c-29cb-4c64-9291-a7d65eab3356", "ApplicationRole", "Admin", null },
+                    { "3", "70ba668e-27b4-4335-be3a-fa4294e07096", "ApplicationRole", "Root", null },
+                    { "4", "022808a7-1851-4f2d-9ff3-defa7b20018e", "ApplicationRole", "Spare1", null },
+                    { "5", "ae5413ee-8891-41db-99a1-f10a90461ee0", "ApplicationRole", "Spare2", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "1", 0, "955bb03f-a866-4e81-97c3-04e84dddec83", "ADMIN@ADMIN.com", true, false, null, "ADMIN@ADMIN.com", "ADMIN@ADMIN.com", "AQAAAAEAACcQAAAAENARq+MDl4qouwx3Y9UNFjE/FJxvJ+ooI/RVa+yFytCzd80WGt6aYyQ1Ywi44F28pg==", null, false, "1aa6e9e5-bd6c-4509-80da-2dcb28d398f4", false, "ADMIN@ADMIN.com" },
+                    { "2", 0, "a2fbef0e-93b4-4436-be32-b68ce1d9f552", "ROOT@ROOT.com", true, false, null, "ROOT@ROOT.com", "ROOT@ROOT.com", "AQAAAAEAACcQAAAAEJ4Dmw/QEFpeTYRc3aaacwJRPrbLEqaiL3lntEL/G8R//JE5aJAm3rjDwBo8dMJVfA==", null, false, "afb1d1a7-2b86-41b8-b96c-0b7a82153ed8", false, "ROOT@ROOT.com" },
+                    { "3", 0, "bb4ad9d4-71ab-4cb6-8f5c-eaab99941558", "USER@USER.com", true, false, null, "USER@USER.com", "USER@USER.com", "AQAAAAEAACcQAAAAENDEhJwbqFVxZvRJru4BjG/GtZYVzoPvRK6ZMDxnbwhDzs6+vxAoWVT3WFfDltzhPQ==", null, false, "20128fb9-abaa-400c-ab1f-891ed4d9c21e", false, "USER@USER.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "2", "1" },
+                    { "1", "1" },
+                    { "3", "2" },
+                    { "1", "2" },
+                    { "1", "3" }
                 });
 
             migrationBuilder.CreateIndex(
