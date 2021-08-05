@@ -33,9 +33,9 @@ namespace IAM.Controllers
             this.tokenUtils = tokenUtils;
         }
 
-        [HttpPost("login")]
+        [HttpPost("GetTokenForThisUser")]
         [AllowAnonymous]
-        public async Task<ActionResult> login([FromBody] LoginCredentials loginCredentials)
+        public async Task<ActionResult> GetTokenForThisUser([FromBody] LoginCredentials loginCredentials)
         {
             if (ModelState.IsValid)
             {
