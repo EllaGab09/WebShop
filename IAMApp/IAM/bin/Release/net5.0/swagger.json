@@ -5,10 +5,50 @@
     "version": "v1"
   },
   "paths": {
-    "/api/Values/getFruits": {
-      "get": {
+    "/api/Access/login": {
+      "post": {
         "tags": [
-          "Values"
+          "Access"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LoginCredentials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserManagement/RegisterUser": {
+      "post": {
+        "tags": [
+          "UserManagement"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RegisterUser"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -72,6 +112,17 @@
   },
   "definitions": {
     "LoginCredentials": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "RegisterUser": {
       "type": "object",
       "properties": {
         "email": {

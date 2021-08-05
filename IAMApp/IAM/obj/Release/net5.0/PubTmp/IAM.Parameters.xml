@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="IIS Web Application Name" description="" value="IAM20210715143921" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Jimmy\\Desktop\\Lexicon_GruppArbete\\IAMApp_03\\IAM\\obj\\Release\\net5\.0\\PubTmp\\Out\\$" />
+  <parameter name="IIS Web Application Name" description="" value="IAM20210802102705" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\repo\\WebShop\\IAMApp\\IAM\\obj\\Release\\net5\.0\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>

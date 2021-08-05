@@ -13,25 +13,12 @@ using System.Threading.Tasks;
 
 namespace IAM.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class ValuesController : ControllerBase
     {
-        [HttpGet("getFruits")]
-        [Authorize(Roles = "Admin")]
-        public ActionResult GetFruits()
-        {
-            List<string> MyFruits = new List<string>() { "Apples", "Oranges" };
-            return Ok(MyFruits);
-        }
-
-        //[HttpGet("getFruitsAuth")]
-        //public ActionResult GetFruitsAuth()
-        //{
-        //    List<string> MyFruits = new List<string>() { "Organic Apples", "Organic Oranges" };
-        //    return Ok(MyFruits);
-        //}
 
         [HttpPost("getToken60s")]
         [AllowAnonymous]
@@ -52,12 +39,12 @@ namespace IAM.Controllers
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                var tokenString = tokenHandler.WriteToken(token);
-                return Ok(new { Token = tokenString });
+//                var tokenString = ;
+                return Ok( tokenHandler.WriteToken(token) );
             }
             else
             {
-                return Unauthorized("Try again my friend");
+                return Unauthorized("Try again friend");
             }
         }
 
@@ -79,12 +66,11 @@ namespace IAM.Controllers
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                var tokenString = tokenHandler.WriteToken(token);
-                return Ok(new { Token = tokenString });
+                return Ok(tokenHandler.WriteToken(token));
             }
             else
             {
-                return Unauthorized("Try again my friend");
+                return Unauthorized("Try again friend");
             }
         }
 

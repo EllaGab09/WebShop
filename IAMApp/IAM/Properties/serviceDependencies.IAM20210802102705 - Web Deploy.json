@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/api-management-iam-210802/apis/IAM",
+      "type": "apis.azure"
+    }
+  }
+}
