@@ -82,18 +82,19 @@ namespace IAM.Controllers
         [HttpPost("GetAllUsers")]
         [Authorize]
         [Authorize(Roles = "Root")]
-        public async Task<ActionResult> GetAllUsers([FromBody] RegisterUser registerUser)
+        public ActionResult GetAllUsers()
         {
-            var User = await userManager.FindByEmailAsync(registerUser.Email);
+            var Users = userManager.Users;
+            //var list = stockItems.Select(item => item.StockID).ToList()
+            var UsersUserName = Users.Select(n => n.Email).ToList();
 
-            if (User == null)
+            if (Users == null)
             {
                 return BadRequest("No Users found");
             }
             else
             {
-
-                return Ok("User deleted");
+                return Ok(UsersUserName);
             }
 
         }

@@ -88,20 +88,6 @@
         "tags": [
           "UserManagement"
         ],
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "$ref": "#/definitions/RegisterUser"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Success"

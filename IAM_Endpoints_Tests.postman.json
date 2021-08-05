@@ -68,36 +68,6 @@
 			"response": []
 		},
 		{
-			"name": "IAM: GetToken7Days (Local)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"dev@dev.com\",\r\n  \"password\": \"dev\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://localhost:44302/api/Values/getToken7Days",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44302",
-					"path": [
-						"api",
-						"Values",
-						"getToken7Days"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "IAM: GetTokenForThisUser (Azure)",
 			"request": {
 				"method": "POST",
@@ -164,6 +134,47 @@
 						"api",
 						"UserManagement",
 						"RemoveThisUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM: GetAllUsers (Azure)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODI1NjIxNSwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.XxgPLRoC_M_Ox9x5hFC9pEXcrBMY9Hj0vtRBM3cRywo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://iam20210802102705.azurewebsites.net/api/UserManagement/GetAllUsers",
+					"protocol": "https",
+					"host": [
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"UserManagement",
+						"GetAllUsers"
 					]
 				}
 			},
