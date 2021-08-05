@@ -72,6 +72,32 @@
             "in": "body",
             "name": "body",
             "schema": {
+              "$ref": "#/definitions/UserName"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserManagement/GetAllUsers": {
+      "post": {
+        "tags": [
+          "UserManagement"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
               "$ref": "#/definitions/RegisterUser"
             }
           }
@@ -155,6 +181,14 @@
           "type": "string"
         },
         "password": {
+          "type": "string"
+        }
+      }
+    },
+    "UserName": {
+      "type": "object",
+      "properties": {
+        "email": {
           "type": "string"
         }
       }

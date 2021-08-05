@@ -39,7 +39,6 @@ namespace IAM.Controllers
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-//                var tokenString = ;
                 return Ok( tokenHandler.WriteToken(token) );
             }
             else

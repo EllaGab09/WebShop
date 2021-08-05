@@ -65,9 +65,9 @@ namespace IAM.Controllers
         [HttpPost("RemoveThisUser")]
         [Authorize]
         [Authorize(Roles = "Root")]
-        public async Task<ActionResult> RemoveThisUser([FromBody] RegisterUser registerUser)
+        public async Task<ActionResult> RemoveThisUser([FromBody] UserName userName)
         {
-            var User = await userManager.FindByEmailAsync(registerUser.Email);
+            var User = await userManager.FindByEmailAsync(userName.Email);
             if (User == null)
             {
                 return BadRequest("User not found");
@@ -75,6 +75,24 @@ namespace IAM.Controllers
             else
             {
                 var result = await userManager.DeleteAsync(User);
+                return Ok("User deleted");
+            }
+        }
+
+        [HttpPost("GetAllUsers")]
+        [Authorize]
+        [Authorize(Roles = "Root")]
+        public async Task<ActionResult> GetAllUsers([FromBody] RegisterUser registerUser)
+        {
+            var User = await userManager.FindByEmailAsync(registerUser.Email);
+
+            if (User == null)
+            {
+                return BadRequest("No Users found");
+            }
+            else
+            {
+
                 return Ok("User deleted");
             }
 

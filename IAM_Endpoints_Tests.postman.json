@@ -145,7 +145,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"online2Dude@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"raw": "{\r\n  \"email\": \"online2Dude@test.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

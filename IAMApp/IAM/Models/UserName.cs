@@ -5,9 +5,15 @@ using System.Threading.Tasks;
 
 namespace IAM.Models
 {
-    public class UserName
+    public class RegisterUser
     {
         public string Email { get; set; }
+
+        public string Password { get; set; }
+
+        //public string ConfirmPassword { get; set; }
+
+
 
     }
 }
