@@ -20,7 +20,7 @@ namespace IAM.Controllers
     public class ValuesController : ControllerBase
     {
 
-        [HttpPost("getToken60s")]
+        [HttpPost("GetToken60s")]
         [AllowAnonymous]
         public async Task<ActionResult> GetToken60s([FromBody] LoginCredentials loginCredentials)
         {
@@ -48,7 +48,7 @@ namespace IAM.Controllers
             }
         }
 
-        [HttpPost("getToken7Days")]
+        [HttpPost("GetToken7Days")]
         [AllowAnonymous]
         public async Task<ActionResult> GetToken7Days([FromBody] LoginCredentials loginCredentials)
         {

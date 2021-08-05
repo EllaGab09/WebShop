@@ -25,11 +25,13 @@ namespace IAM.Data
             //Admin has access to everything i WebShopApp
 
             //Seeding AspNetRoles
-            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "1", Name = "User"  });
-            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "2", Name = "Admin" });
-            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "3", Name = "Root" });
-            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "4", Name = "Spare1" });
-            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "5", Name = "Spare2" });
+            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "1", Name = "User" , NormalizedName = "USER" });
+            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "2", Name = "Admin", NormalizedName = "ADMIN" });
+            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "3", Name = "Root", NormalizedName = "ROOT" });
+            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "4", Name = "Spare1", NormalizedName = "SPARE1" });
+            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "5", Name = "Spare2", NormalizedName = "SPARE2" });
+            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole { Id = "6", Name = "slask", NormalizedName = "slask" });
+
 
             //Seeding AspNetUsers
             var hasher = new PasswordHasher<IdentityUser>(); //a hasher to hash the password before seeding the user to the db

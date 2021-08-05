@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IAM.Migrations
 {
-    public partial class init : Migration
+    public partial class v01 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -158,11 +158,12 @@ namespace IAM.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1", "6fab4a96-6d35-4d98-874a-0653c89d2083", "ApplicationRole", "User", null },
-                    { "2", "1d26bf1c-29cb-4c64-9291-a7d65eab3356", "ApplicationRole", "Admin", null },
-                    { "3", "70ba668e-27b4-4335-be3a-fa4294e07096", "ApplicationRole", "Root", null },
-                    { "4", "022808a7-1851-4f2d-9ff3-defa7b20018e", "ApplicationRole", "Spare1", null },
-                    { "5", "ae5413ee-8891-41db-99a1-f10a90461ee0", "ApplicationRole", "Spare2", null }
+                    { "1", "e07b7a7a-7fbe-4f32-ba87-31a3da186fac", "ApplicationRole", "User", "USER" },
+                    { "2", "2beca9db-f6b3-465f-bac8-a023d5bff88a", "ApplicationRole", "Admin", "ADMIN" },
+                    { "3", "b362404a-b90d-4a4e-a69f-f3984bf2ce15", "ApplicationRole", "Root", "ROOT" },
+                    { "4", "daa2b87c-edc8-4935-ad66-93b08fe9af18", "ApplicationRole", "Spare1", "SPARE1" },
+                    { "5", "2dbc21c0-b031-4ce2-b576-e81177435295", "ApplicationRole", "Spare2", "SPARE2" },
+                    { "6", "4b225238-d242-4cc0-a20b-d58c7a144945", "ApplicationRole", "slask", "slask" }
                 });
 
             migrationBuilder.InsertData(
@@ -170,9 +171,9 @@ namespace IAM.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "955bb03f-a866-4e81-97c3-04e84dddec83", "ADMIN@ADMIN.com", true, false, null, "ADMIN@ADMIN.com", "ADMIN@ADMIN.com", "AQAAAAEAACcQAAAAENARq+MDl4qouwx3Y9UNFjE/FJxvJ+ooI/RVa+yFytCzd80WGt6aYyQ1Ywi44F28pg==", null, false, "1aa6e9e5-bd6c-4509-80da-2dcb28d398f4", false, "ADMIN@ADMIN.com" },
-                    { "2", 0, "a2fbef0e-93b4-4436-be32-b68ce1d9f552", "ROOT@ROOT.com", true, false, null, "ROOT@ROOT.com", "ROOT@ROOT.com", "AQAAAAEAACcQAAAAEJ4Dmw/QEFpeTYRc3aaacwJRPrbLEqaiL3lntEL/G8R//JE5aJAm3rjDwBo8dMJVfA==", null, false, "afb1d1a7-2b86-41b8-b96c-0b7a82153ed8", false, "ROOT@ROOT.com" },
-                    { "3", 0, "bb4ad9d4-71ab-4cb6-8f5c-eaab99941558", "USER@USER.com", true, false, null, "USER@USER.com", "USER@USER.com", "AQAAAAEAACcQAAAAENDEhJwbqFVxZvRJru4BjG/GtZYVzoPvRK6ZMDxnbwhDzs6+vxAoWVT3WFfDltzhPQ==", null, false, "20128fb9-abaa-400c-ab1f-891ed4d9c21e", false, "USER@USER.com" }
+                    { "1", 0, "864bfce7-204c-466a-bb00-0ed7ce59193c", "ADMIN@ADMIN.com", true, false, null, "ADMIN@ADMIN.com", "ADMIN@ADMIN.com", "AQAAAAEAACcQAAAAEBaiC6Swb7Kji4NUCLNNvVyaDigZuqy5CgDrom0ptcnIULnyFBZAi1GYWJZKPq9dWw==", null, false, "79d08ab2-f4ff-4351-a3bf-e2bc93c74a1a", false, "ADMIN@ADMIN.com" },
+                    { "2", 0, "9851e490-efd9-4913-9bd2-916e26bf4f35", "ROOT@ROOT.com", true, false, null, "ROOT@ROOT.com", "ROOT@ROOT.com", "AQAAAAEAACcQAAAAEL533MBO8P9xS94XCHBbuncdFu7fALP8Bv79zG3qGCu/f2Ka6kI+LeHxl3caUYla5w==", null, false, "2586cc8c-05ca-4606-9896-085a16c03a7c", false, "ROOT@ROOT.com" },
+                    { "3", 0, "f862ff20-444e-464c-ab07-17b42cb5973c", "USER@USER.com", true, false, null, "USER@USER.com", "USER@USER.com", "AQAAAAEAACcQAAAAEMKbBV4R/MgPAEg0pE5MH7oJLKK43vIUjMLxpfZuAhCmtdBpQA7szJuRwhNL9BYQTw==", null, false, "f4ce8144-b94e-4c12-9325-97e90bfe58cc", false, "USER@USER.com" }
                 });
 
             migrationBuilder.InsertData(

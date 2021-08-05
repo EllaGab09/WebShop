@@ -31,7 +31,7 @@
         }
       }
     },
-    "/api/UserManagement/RegisterUser": {
+    "/api/UserManagement/CreateUserWithUserRole": {
       "post": {
         "tags": [
           "UserManagement"
@@ -57,7 +57,7 @@
         }
       }
     },
-    "/api/Values/getToken60s": {
+    "/api/Values/GetToken60s": {
       "post": {
         "tags": [
           "Values"
@@ -83,7 +83,7 @@
         }
       }
     },
-    "/api/Values/getToken7Days": {
+    "/api/Values/GetToken7Days": {
       "post": {
         "tags": [
           "Values"

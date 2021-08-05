@@ -88,15 +88,15 @@ namespace IAM.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "955bb03f-a866-4e81-97c3-04e84dddec83",
+                            ConcurrencyStamp = "864bfce7-204c-466a-bb00-0ed7ce59193c",
                             Email = "ADMIN@ADMIN.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.com",
                             NormalizedUserName = "ADMIN@ADMIN.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENARq+MDl4qouwx3Y9UNFjE/FJxvJ+ooI/RVa+yFytCzd80WGt6aYyQ1Ywi44F28pg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBaiC6Swb7Kji4NUCLNNvVyaDigZuqy5CgDrom0ptcnIULnyFBZAi1GYWJZKPq9dWw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1aa6e9e5-bd6c-4509-80da-2dcb28d398f4",
+                            SecurityStamp = "79d08ab2-f4ff-4351-a3bf-e2bc93c74a1a",
                             TwoFactorEnabled = false,
                             UserName = "ADMIN@ADMIN.com"
                         },
@@ -104,15 +104,15 @@ namespace IAM.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a2fbef0e-93b4-4436-be32-b68ce1d9f552",
+                            ConcurrencyStamp = "9851e490-efd9-4913-9bd2-916e26bf4f35",
                             Email = "ROOT@ROOT.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ROOT@ROOT.com",
                             NormalizedUserName = "ROOT@ROOT.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ4Dmw/QEFpeTYRc3aaacwJRPrbLEqaiL3lntEL/G8R//JE5aJAm3rjDwBo8dMJVfA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL533MBO8P9xS94XCHBbuncdFu7fALP8Bv79zG3qGCu/f2Ka6kI+LeHxl3caUYla5w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "afb1d1a7-2b86-41b8-b96c-0b7a82153ed8",
+                            SecurityStamp = "2586cc8c-05ca-4606-9896-085a16c03a7c",
                             TwoFactorEnabled = false,
                             UserName = "ROOT@ROOT.com"
                         },
@@ -120,15 +120,15 @@ namespace IAM.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bb4ad9d4-71ab-4cb6-8f5c-eaab99941558",
+                            ConcurrencyStamp = "f862ff20-444e-464c-ab07-17b42cb5973c",
                             Email = "USER@USER.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@USER.com",
                             NormalizedUserName = "USER@USER.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENDEhJwbqFVxZvRJru4BjG/GtZYVzoPvRK6ZMDxnbwhDzs6+vxAoWVT3WFfDltzhPQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMKbBV4R/MgPAEg0pE5MH7oJLKK43vIUjMLxpfZuAhCmtdBpQA7szJuRwhNL9BYQTw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "20128fb9-abaa-400c-ab1f-891ed4d9c21e",
+                            SecurityStamp = "f4ce8144-b94e-4c12-9325-97e90bfe58cc",
                             TwoFactorEnabled = false,
                             UserName = "USER@USER.com"
                         });
@@ -308,32 +308,44 @@ namespace IAM.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "6fab4a96-6d35-4d98-874a-0653c89d2083",
-                            Name = "User"
+                            ConcurrencyStamp = "e07b7a7a-7fbe-4f32-ba87-31a3da186fac",
+                            Name = "User",
+                            NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "1d26bf1c-29cb-4c64-9291-a7d65eab3356",
-                            Name = "Admin"
+                            ConcurrencyStamp = "2beca9db-f6b3-465f-bac8-a023d5bff88a",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "70ba668e-27b4-4335-be3a-fa4294e07096",
-                            Name = "Root"
+                            ConcurrencyStamp = "b362404a-b90d-4a4e-a69f-f3984bf2ce15",
+                            Name = "Root",
+                            NormalizedName = "ROOT"
                         },
                         new
                         {
                             Id = "4",
-                            ConcurrencyStamp = "022808a7-1851-4f2d-9ff3-defa7b20018e",
-                            Name = "Spare1"
+                            ConcurrencyStamp = "daa2b87c-edc8-4935-ad66-93b08fe9af18",
+                            Name = "Spare1",
+                            NormalizedName = "SPARE1"
                         },
                         new
                         {
                             Id = "5",
-                            ConcurrencyStamp = "ae5413ee-8891-41db-99a1-f10a90461ee0",
-                            Name = "Spare2"
+                            ConcurrencyStamp = "2dbc21c0-b031-4ce2-b576-e81177435295",
+                            Name = "Spare2",
+                            NormalizedName = "SPARE2"
+                        },
+                        new
+                        {
+                            Id = "6",
+                            ConcurrencyStamp = "4b225238-d242-4cc0-a20b-d58c7a144945",
+                            Name = "slask",
+                            NormalizedName = "slask"
                         });
                 });
 

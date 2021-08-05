@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "IAM 1 : Acquire a 60 seconds test token (IAM on Azure)",
+			"name": "IAM: GetToken60s (Azure)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -37,7 +37,37 @@
 			"response": []
 		},
 		{
-			"name": "IAM 2 : Acquire a 7 days test token (IAM on Azure)",
+			"name": "IAM: GetToken60s (Local)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"test@test.com\",\r\n  \"password\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44302/api/Values/getToken60s",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44302",
+					"path": [
+						"api",
+						"Values",
+						"getToken60s"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM: GetToken7Days (Azure)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -68,7 +98,37 @@
 			"response": []
 		},
 		{
-			"name": "IAM 3a : Login as seed admin (IAM on local)",
+			"name": "IAM: GetToken7Days (Local)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"dev@dev.com\",\r\n  \"password\": \"dev\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44302/api/Values/getToken7Days",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44302",
+					"path": [
+						"api",
+						"Values",
+						"getToken7Days"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM: GetTokenForThisUser (Local) (admin)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -98,7 +158,7 @@
 			"response": []
 		},
 		{
-			"name": "IAM 3a : Login as seed user (IAM on local)",
+			"name": "IAM: GetTokenForThisUser (Local) (user)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -128,56 +188,13 @@
 			"response": []
 		},
 		{
-			"name": "IAM Test token against getFruits",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJSb2xlcyI6WyJVc2VyIiwiQWRtaW4iXSwiZXhwIjoxNjI4MDkxODUwLCJpc3MiOiJJQU1BcHAiLCJhdWQiOiJJQU1BcHAtYXVkaWVuY2UifQ.zPx750ETbtHHWSbzWV1tT2et-9j1f0rRegwjKG1aGgY",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://localhost:44302/api/Values/getFruits",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44302",
-					"path": [
-						"api",
-						"Values",
-						"getFruits"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "IAM 4 : Register new user (IAM on localHost)",
+			"name": "IAM : CreateUserWithUserRole (Local)",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"nalle@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"raw": "{\r\n  \"email\": \"hmmm@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -185,7 +202,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:44302/api/UserManagement/RegisterUser",
+					"raw": "https://localhost:44302/api/UserManagement/CreateUserWithUserRole",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -194,7 +211,38 @@
 					"path": [
 						"api",
 						"UserManagement",
-						"RegisterUser"
+						"CreateUserWithUserRole"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM : CreateUserWithUserRole (Azure)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"online2Dude@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://iam20210802102705.azurewebsites.net/api/UserManagement/CreateUserWithUserRole",
+					"protocol": "https",
+					"host": [
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"UserManagement",
+						"CreateUserWithUserRole"
 					]
 				}
 			},
