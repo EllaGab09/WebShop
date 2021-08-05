@@ -129,13 +129,23 @@
 			"response": []
 		},
 		{
-			"name": "IAM: GetTokenForThisUser (Local) (user)",
+			"name": "IAM: RemoveThisUser (Azure)",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODI1NjIxNSwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.XxgPLRoC_M_Ox9x5hFC9pEXcrBMY9Hj0vtRBM3cRywo",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"user@user.com\",\r\n  \"password\": \"user\"\r\n}",
+					"raw": "{\r\n  \"email\": \"online2Dude@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -143,29 +153,30 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:44302/api/Access/login",
+					"raw": "https://iam20210802102705.azurewebsites.net/api/UserManagement/RemoveThisUser",
 					"protocol": "https",
 					"host": [
-						"localhost"
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
 					],
-					"port": "44302",
 					"path": [
 						"api",
-						"Access",
-						"login"
+						"UserManagement",
+						"RemoveThisUser"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "IAM : CreateUserWithUserRole (Local)",
+			"name": "IAM: GetRootToken (Azure)",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"hmmm@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"raw": "{\r\n  \"email\": \"root@root.com\",\r\n  \"password\": \"root\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -173,16 +184,17 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:44302/api/UserManagement/CreateUserWithUserRole",
+					"raw": "https://iam20210802102705.azurewebsites.net/api/Access/GetTokenForThisUser",
 					"protocol": "https",
 					"host": [
-						"localhost"
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
 					],
-					"port": "44302",
 					"path": [
 						"api",
-						"UserManagement",
-						"CreateUserWithUserRole"
+						"Access",
+						"GetTokenForThisUser"
 					]
 				}
 			},
