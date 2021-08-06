@@ -22,10 +22,12 @@ namespace IAM.Controllers
     public class UserManagementController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<ApplicationRole> roleManager;
 
-        public UserManagementController(UserManager<ApplicationUser> userManager)
+        public UserManagementController(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
         //If username/password is valid, the user is added to the AspNetUsers table.
@@ -62,6 +64,7 @@ namespace IAM.Controllers
             }
         }
 
+
         [HttpPost("RemoveThisUser")]
         [Authorize]
         [Authorize(Roles = "Root")]
@@ -79,13 +82,13 @@ namespace IAM.Controllers
             }
         }
 
+
         [HttpPost("GetAllUsers")]
         [Authorize]
         [Authorize(Roles = "Root")]
         public ActionResult GetAllUsers()
         {
             var Users = userManager.Users;
-            //var list = stockItems.Select(item => item.StockID).ToList()
             var UsersUserName = Users.Select(n => n.Email).ToList();
 
             if (Users == null)
@@ -96,7 +99,61 @@ namespace IAM.Controllers
             {
                 return Ok(UsersUserName);
             }
-
         }
+
+
+        [HttpPost("GetAllRoles")]
+        [Authorize]
+        [Authorize(Roles = "Root")]
+        public ActionResult GetAllRoles()
+        {
+            var Roles = roleManager.Roles;
+            var RolesOnlyName = Roles.Select(n => n.NormalizedName).ToList();
+
+            if (Roles == null)
+            {
+                return BadRequest("No Roles found");
+            }
+            else
+            {
+                return Ok(RolesOnlyName);
+            }
+        }
+
+        [HttpPost("ReadRolesFromUser")]
+        [Authorize]
+        [Authorize(Roles = "Root")]
+        public ActionResult ReadRolesFromUser([FromBody] UserWithRoles userWithRoles)
+        {
+
+
+
+            return Ok();
+            //if (null == null)
+            //{
+            //    return BadRequest("This user has no roles");
+            //}
+            //else
+            //{
+            //    return Ok();
+            //}
+        }
+
+        [HttpPost("WriteRolesToUser")]
+        [Authorize]
+        [Authorize(Roles = "Root")]
+        public ActionResult WriteRolesToUser()
+        {
+            return Ok();
+            //if (null == null)
+            //{
+            //    return BadRequest("This user has no roles");
+            //}
+            //else
+            //{
+            //    return Ok();
+            //}
+        }
+
     }
 }

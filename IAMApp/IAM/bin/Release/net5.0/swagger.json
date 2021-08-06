@@ -95,6 +95,56 @@
         }
       }
     },
+    "/api/UserManagement/GetAllRoles": {
+      "post": {
+        "tags": [
+          "UserManagement"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserManagement/ReadRolesFromUser": {
+      "post": {
+        "tags": [
+          "UserManagement"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserWithRoles"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserManagement/WriteRolesToUser": {
+      "post": {
+        "tags": [
+          "UserManagement"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Values/GetToken60s": {
       "post": {
         "tags": [
@@ -176,6 +226,20 @@
       "properties": {
         "email": {
           "type": "string"
+        }
+      }
+    },
+    "UserWithRoles": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

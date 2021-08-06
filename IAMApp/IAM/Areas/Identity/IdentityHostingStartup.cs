@@ -22,7 +22,7 @@ namespace IAM.Areas.Identity
 
                 //services.AddDefaultIdentity<IAMUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 //    .AddEntityFrameworkStores<AppIdentityDbContext>();
-                services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<AppIdentityDbContext>();
             });
         }

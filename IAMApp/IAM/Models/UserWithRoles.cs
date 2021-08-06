@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace IAM.Models
 {
-    public class UserName
+    public class UserWithRoles
     {
         public string Email { get; set; }
+
+        public List<string> Roles { get; set; }
 
     }
 }

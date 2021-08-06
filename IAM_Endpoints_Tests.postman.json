@@ -20,7 +20,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://iam20210802102705.azurewebsites.net/api/Values/getToken60s",
+					"raw": "https://iam20210802102705.azurewebsites.net/api/Values/GetToken60s",
 					"protocol": "https",
 					"host": [
 						"iam20210802102705",
@@ -30,7 +30,7 @@
 					"path": [
 						"api",
 						"Values",
-						"getToken60s"
+						"GetToken60s"
 					]
 				}
 			},
@@ -51,7 +51,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://iam20210802102705.azurewebsites.net/api/Values/getToken7Days",
+					"raw": "https://iam20210802102705.azurewebsites.net/api/Values/GetToken7Days",
 					"protocol": "https",
 					"host": [
 						"iam20210802102705",
@@ -61,7 +61,7 @@
 					"path": [
 						"api",
 						"Values",
-						"getToken7Days"
+						"GetToken7Days"
 					]
 				}
 			},
@@ -106,7 +106,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODI1NjIxNSwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.XxgPLRoC_M_Ox9x5hFC9pEXcrBMY9Hj0vtRBM3cRywo",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODI2MDk2OCwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.hfFJxHS9E7pM5_y9YFYeKrdMKo9YZPGeKJeu7P6WXh4",
 							"type": "string"
 						}
 					]
@@ -115,7 +115,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"online2Dude@test.com\"\r\n}",
+					"raw": "{\r\n  \"email\": \"online3Dude@test.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -147,7 +147,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODI1NjIxNSwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.XxgPLRoC_M_Ox9x5hFC9pEXcrBMY9Hj0vtRBM3cRywo",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODMzMDE0OCwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.KxAdeS4Pp3IqYmQKYdHY0D6yzOHPCGcp7oK6yCcP9Lo",
 							"type": "string"
 						}
 					]
@@ -175,6 +175,47 @@
 						"api",
 						"UserManagement",
 						"GetAllUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM: GetAllRoles (Azure)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODI1NjIxNSwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.XxgPLRoC_M_Ox9x5hFC9pEXcrBMY9Hj0vtRBM3cRywo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://iam20210802102705.azurewebsites.net/api/UserManagement/GetAllRoles",
+					"protocol": "https",
+					"host": [
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"UserManagement",
+						"GetAllRoles"
 					]
 				}
 			},
@@ -218,7 +259,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"online2Dude@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
