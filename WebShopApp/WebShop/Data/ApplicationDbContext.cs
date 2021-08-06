@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using WebShopDB.Models;
+using WebShop.Models;
 
 namespace WebShop.Data
 {
