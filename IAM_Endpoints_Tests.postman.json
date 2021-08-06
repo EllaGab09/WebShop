@@ -325,6 +325,47 @@
 			"response": []
 		},
 		{
+			"name": "IAM : WriteRolesToUser (Azure)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODMzNTk3OSwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.mOxGGOH1LdYag-ZH5Ee_MrlsfhcGboLSH2mDBOpdlEo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"Roles\": [\"USER\", \"ROOT\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://iam20210802102705.azurewebsites.net/api/UserManagement/WriteRolesToUser",
+					"protocol": "https",
+					"host": [
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"UserManagement",
+						"WriteRolesToUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "WebShop : getProducts (WebShop on local host)",
 			"request": {
 				"method": "GET",

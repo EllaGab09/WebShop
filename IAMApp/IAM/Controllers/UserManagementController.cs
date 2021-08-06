@@ -66,7 +66,6 @@ namespace IAM.Controllers
 
 
         [HttpPost("RemoveThisUser")]
-        [Authorize]
         [Authorize(Roles = "Root")]
         public async Task<ActionResult> RemoveThisUser([FromBody] UserName userName)
         {
@@ -84,7 +83,6 @@ namespace IAM.Controllers
 
 
         [HttpPost("GetAllUsers")]
-        [Authorize]
         [Authorize(Roles = "Root")]
         public ActionResult GetAllUsers()
         {
@@ -103,7 +101,6 @@ namespace IAM.Controllers
 
 
         [HttpPost("GetAllRoles")]
-        [Authorize]
         [Authorize(Roles = "Root")]
         public ActionResult GetAllRoles()
         {
@@ -122,7 +119,6 @@ namespace IAM.Controllers
 
 
         [HttpPost("ReadRolesFromUser")]
-        [Authorize]
         [Authorize(Roles = "Root")]
         public async Task<ActionResult> ReadRolesFromUser([FromBody] UserName userName)
         {
@@ -147,20 +143,30 @@ namespace IAM.Controllers
 
 
         [HttpPost("WriteRolesToUser")]
-        [Authorize]
         [Authorize(Roles = "Root")]
-        public ActionResult WriteRolesToUser()
+        public async Task<ActionResult> WriteRolesToUser([FromBody] UserWithRoles userWithRoles)
         {
-            return Ok();
-            //if (null == null)
-            //{
-            //    return BadRequest("This user has no roles");
-            //}
-            //else
-            //{
-            //    return Ok();
-            //}
+            var User = await userManager.FindByNameAsync(userWithRoles.Email);
+            if (User != null)
+            {
+                var UsersRoles = await userManager.GetRolesAsync(User);
+                var RemoveRolesResult = await userManager.RemoveFromRolesAsync(User, UsersRoles);
+                var AddRolesResult = await userManager.AddToRolesAsync(User, userWithRoles.Roles);
+                if (RemoveRolesResult.Succeeded && AddRolesResult.Succeeded)
+                {
+                    return Ok("User roles are updated");
+                }
+                else
+                {
+                    return BadRequest("Unable to update roles for user");
+                }
+            }
+            else
+            {
+                return BadRequest("Cant find user");
+            }
         }
+
 
     }
 }
