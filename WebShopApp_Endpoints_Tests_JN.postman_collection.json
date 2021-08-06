@@ -22,7 +22,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -46,6 +46,75 @@
 			"response": []
 		},
 		{
+			"name": "WebShopApp : GetAllProducts (Localhost)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44373/api/Product/GetAllProducts",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44373",
+					"path": [
+						"api",
+						"Product",
+						"GetAllProducts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WebShopApp : GetProductDetails (Localhost)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44373/api/Product/GetProductDetails",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44373",
+					"path": [
+						"api",
+						"Product",
+						"GetProductDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "WebShopApp : HasAttatchedTokenRootAccess (LocalHost)",
 			"request": {
 				"auth": {
@@ -62,7 +131,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,7 +155,7 @@
 			"response": []
 		},
 		{
-			"name": "WebShopApp : HasAttatchedTokenAdminAccess (LocalHost) Copy",
+			"name": "WebShopApp : HasAttatchedTokenAdminAccess (LocalHost)",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -102,7 +171,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
