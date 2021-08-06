@@ -6,68 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "IAM: GetToken60s (Azure)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"test@test.com\",\r\n  \"password\": \"test\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://iam20210802102705.azurewebsites.net/api/Values/GetToken60s",
-					"protocol": "https",
-					"host": [
-						"iam20210802102705",
-						"azurewebsites",
-						"net"
-					],
-					"path": [
-						"api",
-						"Values",
-						"GetToken60s"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "IAM: GetToken7Days (Azure)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"dev@dev.com\",\r\n  \"password\": \"dev\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://iam20210802102705.azurewebsites.net/api/Values/GetToken7Days",
-					"protocol": "https",
-					"host": [
-						"iam20210802102705",
-						"azurewebsites",
-						"net"
-					],
-					"path": [
-						"api",
-						"Values",
-						"GetToken7Days"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "IAM: GetTokenForThisUser (Azure)",
 			"request": {
 				"method": "POST",
@@ -93,6 +31,37 @@
 						"api",
 						"Access",
 						"GetTokenForThisUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM : CreateUserWithUserRole (Azure)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://iam20210802102705.azurewebsites.net/api/UserManagement/CreateUserWithUserRole",
+					"protocol": "https",
+					"host": [
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"UserManagement",
+						"CreateUserWithUserRole"
 					]
 				}
 			},
@@ -181,47 +150,6 @@
 			"response": []
 		},
 		{
-			"name": "IAM: GetAllRoles (Azure)",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODI1NjIxNSwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.XxgPLRoC_M_Ox9x5hFC9pEXcrBMY9Hj0vtRBM3cRywo",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://iam20210802102705.azurewebsites.net/api/UserManagement/GetAllRoles",
-					"protocol": "https",
-					"host": [
-						"iam20210802102705",
-						"azurewebsites",
-						"net"
-					],
-					"path": [
-						"api",
-						"UserManagement",
-						"GetAllRoles"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "IAM: ReadRolesFromUser (Azure)",
 			"request": {
 				"auth": {
@@ -257,68 +185,6 @@
 						"api",
 						"UserManagement",
 						"ReadRolesFromUser"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "IAM: GetRootToken (Azure)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"root@root.com\",\r\n  \"password\": \"root\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://iam20210802102705.azurewebsites.net/api/Access/GetTokenForThisUser",
-					"protocol": "https",
-					"host": [
-						"iam20210802102705",
-						"azurewebsites",
-						"net"
-					],
-					"path": [
-						"api",
-						"Access",
-						"GetTokenForThisUser"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "IAM : CreateUserWithUserRole (Azure)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://iam20210802102705.azurewebsites.net/api/UserManagement/CreateUserWithUserRole",
-					"protocol": "https",
-					"host": [
-						"iam20210802102705",
-						"azurewebsites",
-						"net"
-					],
-					"path": [
-						"api",
-						"UserManagement",
-						"CreateUserWithUserRole"
 					]
 				}
 			},
@@ -366,52 +232,72 @@
 			"response": []
 		},
 		{
-			"name": "WebShop : getProducts (WebShop on local host)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44373/api/AuthTest/getProducts",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44373",
-					"path": [
-						"api",
-						"AuthTest",
-						"getProducts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "WebShop : Use token on getSectretProducts (WebShop on local host)",
+			"name": "IAM: GetAllRoles (Azure)",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImRldkBkZXYuY29tIiwibmJmIjoxNjI2MzUzNjU1LCJleHAiOjE2MjY5NTg0NTUsImlhdCI6MTYyNjM1MzY1NX0.aIDhllurs3J43EEwLSZpBBoOzShodakM_-2Htrgdrmk",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODI1NjIxNSwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.XxgPLRoC_M_Ox9x5hFC9pEXcrBMY9Hj0vtRBM3cRywo",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://localhost:44373/api/AuthTest/getSectretProducts",
+					"raw": "https://iam20210802102705.azurewebsites.net/api/UserManagement/GetAllRoles",
 					"protocol": "https",
 					"host": [
-						"localhost"
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
 					],
-					"port": "44373",
 					"path": [
 						"api",
-						"AuthTest",
-						"getSectretProducts"
+						"UserManagement",
+						"GetAllRoles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM: GetRootToken (Azure)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"root@root.com\",\r\n  \"password\": \"root\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://iam20210802102705.azurewebsites.net/api/Access/GetTokenForThisUser",
+					"protocol": "https",
+					"host": [
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Access",
+						"GetTokenForThisUser"
 					]
 				}
 			},

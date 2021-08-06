@@ -630,4 +630,3 @@ C:\repo\WebShop\IAMApp\IAM\obj\Debug\net5.0\IAM.dll
 C:\repo\WebShop\IAMApp\IAM\obj\Debug\net5.0\ref\IAM.dll
 C:\repo\WebShop\IAMApp\IAM\obj\Debug\net5.0\IAM.pdb
 C:\repo\WebShop\IAMApp\IAM\obj\Debug\net5.0\IAM.genruntimeconfig.cache
-C:\repo\WebShop\IAMApp\IAM\obj\Debug\net5.0\IAM.csprojAssemblyReference.cache
