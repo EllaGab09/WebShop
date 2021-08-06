@@ -14,25 +14,27 @@ namespace WebShop.Controllers
     [Authorize]
     public class AuthTestController : ControllerBase
     {
-        [HttpGet("getProducts")]
-        [AllowAnonymous]
-        public ActionResult getProducts()
+
+        [HttpPost("HasAttatchedTokenRootAccess")]
+        [Authorize(Roles = "Root")]
+        public async Task<ActionResult> HasAttatchedTokenRootAccess()
         {
-            List<TestAuthProduct> ProductList = new List<TestAuthProduct>();
-            ProductList.Add(new TestAuthProduct(10, "Keyboard", 19.99, "someWorkingUrl"));
-            ProductList.Add(new TestAuthProduct(11, "Mouse", 8.80, "someWorkingUrl"));
-            ProductList.Add(new TestAuthProduct(12, "Monitor", 190.0, "someWorkingUrl"));
-            return Ok(ProductList);
+            return Ok("The attatched token has correct Root role in it.");
         }
 
-        [HttpGet("getSectretProducts")]
-        public ActionResult getSectretProducts()
+        [HttpPost("HasAttatchedTokenAdminAccess")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> HasAttatchedTokenAdminAccess()
         {
-            List<TestAuthProduct> ProductList = new List<TestAuthProduct>();
-            ProductList.Add(new TestAuthProduct(600, "Crispr gene editing kit", 400.0, "someWorkingUrl"));
-            ProductList.Add(new TestAuthProduct(601, "Paperclip maximizer AI", 7000.80, "someWorkingUrl"));
-            ProductList.Add(new TestAuthProduct(602, "Plutonium-239, (1kg bar)", 5000.0, "someWorkingUrl"));
-            return Ok(ProductList);
+            return Ok("The attatched token has correct Admin role in it.");
         }
+
+        [HttpPost("HasAttatchedTokenUserAccess")]
+        [Authorize(Roles = "User")]
+        public async Task<ActionResult> HasAttatchedTokenUserAccess()
+        {
+            return Ok("The attatched token has correct User role in it.");
+        }
+
     }
 }
