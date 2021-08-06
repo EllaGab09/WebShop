@@ -120,24 +120,31 @@ namespace IAM.Controllers
             }
         }
 
+
         [HttpPost("ReadRolesFromUser")]
         [Authorize]
         [Authorize(Roles = "Root")]
-        public ActionResult ReadRolesFromUser([FromBody] UserWithRoles userWithRoles)
+        public async Task<ActionResult> ReadRolesFromUser([FromBody] UserName userName)
         {
-
-
-
-            return Ok();
-            //if (null == null)
-            //{
-            //    return BadRequest("This user has no roles");
-            //}
-            //else
-            //{
-            //    return Ok();
-            //}
+            var User = await userManager.FindByNameAsync(userName.Email);
+            if (User != null)
+            {
+                var UsersRoles = await userManager.GetRolesAsync(User);
+                if (UsersRoles != null)
+                {
+                    return Ok(UsersRoles);
+                }
+                else
+                {
+                    return BadRequest("This user has no roles");
+                }
+            }
+            else
+            {
+                return BadRequest("Cant find user");
+            }
         }
+
 
         [HttpPost("WriteRolesToUser")]
         [Authorize]
