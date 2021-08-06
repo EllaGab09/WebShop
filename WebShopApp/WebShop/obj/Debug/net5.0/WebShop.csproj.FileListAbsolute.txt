@@ -94,4 +94,3 @@ C:\repo\WebShop\WebShopApp\WebShop\obj\Debug\net5.0\WebShop.dll
 C:\repo\WebShop\WebShopApp\WebShop\obj\Debug\net5.0\ref\WebShop.dll
 C:\repo\WebShop\WebShopApp\WebShop\obj\Debug\net5.0\WebShop.pdb
 C:\repo\WebShop\WebShopApp\WebShop\obj\Debug\net5.0\WebShop.genruntimeconfig.cache
-C:\repo\WebShop\WebShopApp\WebShop\obj\Debug\net5.0\WebShop.csprojAssemblyReference.cache

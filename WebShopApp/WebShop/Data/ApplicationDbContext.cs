@@ -35,7 +35,7 @@ namespace WebShop.Data
             modelBuilder.Entity<Category>().Property(t => t.Name).IsRequired();
             modelBuilder.Entity<Category>().Property(t => t.Name).HasMaxLength(100);
             modelBuilder.Entity<Category>().Property(t => t.Name).HasColumnName("Category name");
-            modelBuilder.Entity<Product>().HasKey(t => new { t.ID });
+            modelBuilder.Entity<Product>().HasKey(t => new { t.Id });
             modelBuilder.Entity<Product>().Property(t => t.Name).IsRequired();
             modelBuilder.Entity<Product>().Property(t => t.Name).HasMaxLength(100);
             modelBuilder.Entity<Product>().Property(t => t.Name).HasColumnName("Product name");
@@ -60,10 +60,10 @@ namespace WebShop.Data
 
             //Seeding some data to play around with in the future.
 
-            modelBuilder.Entity<Product>().HasData(new Product { ID = 1, Name = "Mini-Keyboard", CategoryIdFK = 1 });
-            modelBuilder.Entity<Product>().HasData(new Product { ID = 2, Name = "Gaming-keyboard", CategoryIdFK = 1 });
-            modelBuilder.Entity<Product>().HasData(new Product { ID = 3, Name = "LG 23' HD", CategoryIdFK = 2 });
-            modelBuilder.Entity<Product>().HasData(new Product { ID = 4, Name = "Siemens 28' 4K", CategoryIdFK = 2 });
+            modelBuilder.Entity<Product>().HasData(new Product { Id = 1, Name = "Mini-Keyboard", CategoryIdFK = 1 });
+            modelBuilder.Entity<Product>().HasData(new Product { Id = 2, Name = "Gaming-keyboard", CategoryIdFK = 1 });
+            modelBuilder.Entity<Product>().HasData(new Product { Id = 3, Name = "LG 23' HD", CategoryIdFK = 2 });
+            modelBuilder.Entity<Product>().HasData(new Product { Id = 4, Name = "Siemens 28' 4K", CategoryIdFK = 2 });
 
             modelBuilder.Entity<Category>().HasData(new Category { ID = 1, Name = "Keyboards" });
             modelBuilder.Entity<Category>().HasData(new Category { ID = 2, Name = "Monitors" });

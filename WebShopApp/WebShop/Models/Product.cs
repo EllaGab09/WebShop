@@ -8,31 +8,15 @@ namespace WebShopDB.Models
 {
     public class Product
     {
-        //[Key]
-        public int ID { get; set; }
-        //[Required]
-        public string Name { get; set; }
-        //[Required]
-        //public string Type { get; set; } //virtual, physical 
-        //[Required]
-        public string Description { get; set; }
-        //[Required]
-        //public float UnitPrice { get; set; }
-        //[Required]
-        //public int Stock { get; set; }
-        //[Required]
-        //public int Ranking { get; set; }
-        //public float Discount { get; set; }
-        //[Required]
-        //public string ImageURL { get; set; }
-    
-        //public int CategoryID { get; set; }
-        public Category Category { get; set; }
-        public int CategoryIdFK { get; set; } //FK. I think this need to be here in order to use Fluent
-        public ICollection<Review> Reviews { get; set; }
-        //public int OrderID { get; set; }
-        //public Order Order { get; set; }
-    }
 
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Price { get; set; }
+        public string ImageUrl { get; set; }
+        public Category Category { get; set; }
+        public int CategoryIdFK { get; set; } //FK. This will hit Category PK.
+        public ICollection<Review> Reviews { get; set; }
+
+    }
 
 }
