@@ -1,8 +1,129 @@
 {
 	"info": {
 		"_postman_id": "daae5027-23bf-4ac8-949d-f60279dfe815",
-		"name": "JN_WebShopApp_EndpointsTests",
+		"name": "WebShopApp_EndpointsTests_JN",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
-	"item": []
+	"item": [
+		{
+			"name": "WebShopApp : HasAttatchedTokenUserAccess (LocalHost)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODMzOTQ3MCwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.L9purA19ISC2Wm5FZPs5nwcN03ZDrBqUD0ouuoZDyxM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44373/api/AuthTest/HasAttatchedTokenUserAccess",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44373",
+					"path": [
+						"api",
+						"AuthTest",
+						"HasAttatchedTokenUserAccess"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WebShopApp : HasAttatchedTokenRootAccess (LocalHost)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJSb290Il0sImV4cCI6MTYyODMzOTQ3MCwiaXNzIjoiSUFNQXBwIiwiYXVkIjoiSUFNQXBwLWF1ZGllbmNlIn0.L9purA19ISC2Wm5FZPs5nwcN03ZDrBqUD0ouuoZDyxM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44373/api/AuthTest/HasAttatchedTokenRootAccess",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44373",
+					"path": [
+						"api",
+						"AuthTest",
+						"HasAttatchedTokenRootAccess"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WebShopApp : HasAttatchedTokenAdminAccess (LocalHost) Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIlVzZXIiLCJBZG1pbiJdLCJleHAiOjE2MjgzMzk2MzEsImlzcyI6IklBTUFwcCIsImF1ZCI6IklBTUFwcC1hdWRpZW5jZSJ9.Ss5E3bTinuoKQFo0dhL4qpKJjqXiC3Aq2srI3Bvcx_g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"TrevligHelg@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44373/api/AuthTest/HasAttatchedTokenAdminAccess",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44373",
+					"path": [
+						"api",
+						"AuthTest",
+						"HasAttatchedTokenAdminAccess"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }

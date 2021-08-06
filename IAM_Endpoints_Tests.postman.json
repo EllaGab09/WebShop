@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"onlineDude@test.com\",\r\n  \"password\": \"aaa\"\r\n}",
+					"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -280,6 +280,37 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"email\": \"root@root.com\",\r\n  \"password\": \"root\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://iam20210802102705.azurewebsites.net/api/Access/GetTokenForThisUser",
+					"protocol": "https",
+					"host": [
+						"iam20210802102705",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Access",
+						"GetTokenForThisUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IAM: GetAdminToken (Azure)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
