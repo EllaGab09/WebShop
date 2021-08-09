@@ -38,10 +38,13 @@ export class ProductCard extends Component {
    }
 
    loadImage() {
-      if (this.state.product.imageThumb === "") return;
+      const imgUrl = this.state.product.imageThumb;
+      if (imgUrl === "") return;
       
+      console.log(`Loading image url: ${imgUrl}`)
+
       let imageService = this.props.imageService;
-      let requestUrl = './images/' + this.state.product.imageThumb;
+      let requestUrl = './images/' + imgUrl;
 
       let me = this;
       imageService.loadImage(requestUrl, (imageAddress => 

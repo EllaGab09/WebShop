@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\repo\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj": {}
+    "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj": {}
   },
   "projects": {
-    "C:\\repo\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj": {
+    "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\repo\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj",
+        "projectUniqueName": "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj",
         "projectName": "WebShop",
-        "projectPath": "C:\\repo\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj",
+        "projectPath": "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj",
         "packagesPath": "C:\\Users\\Jimmy\\.nuget\\packages\\",
-        "outputPath": "C:\\repo\\WebShop\\WebShopApp\\WebShop\\obj\\",
+        "outputPath": "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\WebShopApp\\WebShop\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Jimmy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WucFetVZKbDbMlQ/q5J4QmzfRSoCOyaOXRb7uhnv1m4YOUKx+D6P8pjih1SCzwwbgF05z1rtZiI2HvRDWd1pQw==",
+  "dgSpecHash": "+d4jJiW/G0nOY6Bj4vtQC67mOPM5LZFxQNJtZuorwFD+eJ/d536wR479n0BRdB0HQnbnL75LY+GhCR5QRjVuww==",
   "success": true,
-  "projectFilePath": "C:\\repo\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj",
+  "projectFilePath": "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jimmy\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Jimmy\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.8\\microsoft.aspnetcore.authentication.jwtbearer.5.0.8.nupkg.sha512",

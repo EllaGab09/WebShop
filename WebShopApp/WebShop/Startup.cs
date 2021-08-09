@@ -22,6 +22,7 @@ namespace WebShop
 {
     public class Startup
     {
+        const string AllowLocalhost3000 = "AllowedOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -62,9 +63,13 @@ namespace WebShop
                 };
             });
 
-
-
-            //WebShopApp
+            services.AddCors(options =>
+                options.AddPolicy(name: AllowLocalhost3000, builder =>
+                    builder.WithOrigins("http://localhost:3000")
+                    .AllowCredentials()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    ));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -88,6 +93,8 @@ namespace WebShop
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(AllowLocalhost3000);
 
             app.UseAuthentication();
             app.UseAuthorization();
