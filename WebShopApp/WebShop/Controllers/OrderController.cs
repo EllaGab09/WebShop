@@ -13,48 +13,48 @@ namespace WebShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly IDataAccess dataAccess;
 
-        public OrderController(IDataAccess dataAccess)
+        public ProductController(IDataAccess dataAccess)
         {
             this.dataAccess = dataAccess;
         }
 
-        [HttpPost("CreateOrder")]
-        [Authorize(Roles = "Admin, User")]
-        public ActionResult CreateOrder()
-        {
-            return Ok("Still in dev!!");
-        }
-
-        [HttpPost("ReadOrder")]
+        [HttpPost("CreateProduct")]
         [Authorize(Roles = "Admin")]
-        public ActionResult ReadOrder()
+        public ActionResult CreateProduct()
         {
             return Ok("Still in dev!!");
         }
 
-        [HttpPost("UpdateOrder")]
-        [Authorize(Roles = "Admin")]
-        public ActionResult UpdateOrder()
-        {
-            return Ok("Still in dev!!");
-        }
-
-        [HttpPost("DeleteOrder")]
-        [Authorize(Roles = "Admin")]
-        public ActionResult DeleteOrder()
-        {
-            return Ok("Still in dev!!");
-        }
-
-        [HttpGet("ReadAllOrder")]
+        [HttpPost("ReadProduct")]
         [AllowAnonymous]
-        public ActionResult ReadAllOrder()
+        public ActionResult<DetailedProduct> ReadProduct([FromBody] GenericObjectId id)
+        {
+            return dataAccess.GetProductDetails(Int32.Parse(id.id));
+        }
+
+        [HttpPost("UpdateProduct")]
+        [Authorize(Roles = "Admin")]
+        public ActionResult UpdateProduct()
         {
             return Ok("Still in dev!!");
+        }
+
+        [HttpPost("DeleteProduct")]
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteProduct()
+        {
+            return Ok("Still in dev!!");
+        }
+
+        [HttpGet("ReadAllProducts")]
+        [AllowAnonymous]
+        public ActionResult<List<Product>> ReadAllProducts()
+        {
+            return dataAccess.GetAllProducts();
         }
 
 

@@ -11,6 +11,16 @@ namespace WebShop.Data
         public ApplicationDbContext(DbContextOptions options) : base(options)
         { }
 
+
+        //NOTE. In next version, we should use GUID
+        //string adminRoleId = Guid.NewGuid().ToString();
+        //string userRoleId = Guid.NewGuid().ToString();
+        //string user2RoleId = Guid.NewGuid().ToString();
+        //string adminId = Guid.NewGuid().ToString();
+        //string userId = Guid.NewGuid().ToString();
+        //string userId2 = Guid.NewGuid().ToString();
+
+
         //public DbSet<Admin> Admins { get; set; }
         //public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
