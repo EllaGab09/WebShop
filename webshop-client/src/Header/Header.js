@@ -7,7 +7,12 @@ export class Header extends Component {
       const cartService = this.props.shoppingCartService;
       return <div className="header">
          <h1>{this.props.name}</h1>
-         <ShoppingCart shoppingCartService={cartService} />
+         <div className = "navbar">
+            <button onClick = {this.props.onClickProducts}>Products</button>
+            <button onClick = {this.props.onClickCreateUser}>Register</button>
+            <button onClick = {this.props.onClickLogin}>Login</button>
+            <ShoppingCart shoppingCartService={cartService} />
+         </div>
       </div>
    }
 }

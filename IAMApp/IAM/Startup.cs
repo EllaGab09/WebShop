@@ -1,26 +1,22 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using Microsoft.IdentityModel.Tokens;
 using IAM.Interfaces;
 
 namespace IAM
 {
     public class Startup
     {
+        readonly string AllowLocalhost3000 = "AllowLocalHost300";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,8 +32,6 @@ namespace IAM
             //Settings to override the default password requirements when creating new user.
 
             //NOTE: My settings below are used during dev, ie we have a very week password.
-            //NOTE: My settings below are used during dev, ie we have a very week password.
-            //NOTE: My settings below are used during dev, ie we have a very week password.
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 1;
@@ -47,6 +41,14 @@ namespace IAM
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
             });
+
+            services.AddCors(options =>
+                options.AddPolicy(name: AllowLocalhost3000, builder =>
+                    builder.WithOrigins("http://localhost:3000")
+                    .AllowCredentials()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    ));
 
 
             //JWT token settings            
@@ -84,7 +86,6 @@ namespace IAM
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -97,6 +98,9 @@ namespace IAM
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(AllowLocalhost3000);
+
             app.UseAuthentication();
             app.UseAuthorization();
 

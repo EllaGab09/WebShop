@@ -7679,19 +7679,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jimmy\\.nuget\\packages\\": {}
+    "C:\\Users\\Jimmy\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\repo\\WebShop\\IAMApp\\IAM\\IAM.csproj",
+      "projectUniqueName": "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\IAMApp\\IAM\\IAM.csproj",
       "projectName": "IAM",
-      "projectPath": "C:\\repo\\WebShop\\IAMApp\\IAM\\IAM.csproj",
+      "projectPath": "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\IAMApp\\IAM\\IAM.csproj",
       "packagesPath": "C:\\Users\\Jimmy\\.nuget\\packages\\",
-      "outputPath": "C:\\repo\\WebShop\\IAMApp\\IAM\\obj\\",
+      "outputPath": "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\IAMApp\\IAM\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\Jimmy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

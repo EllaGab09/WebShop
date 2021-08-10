@@ -41,7 +41,7 @@ export class ProductCard extends Component {
       const imgUrl = this.state.product.imageThumb;
       if (imgUrl === "") return;
       
-      console.log(`Loading image url: ${imgUrl}`)
+      // console.log(`Loading image url: ${imgUrl}`)
 
       let imageService = this.props.imageService;
       let requestUrl = './images/' + imgUrl;

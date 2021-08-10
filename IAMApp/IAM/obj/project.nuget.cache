@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+v4etyNpSv6O+gZwO1m9eRCyqjgT5m6RlnzSX3YARMNHMo8XEAddXcqa2mPiTZoebKslreaQKHseOAdRHWtlMA==",
+  "dgSpecHash": "mTpjmh3BJ3QwjzhoqA7TpiwkJpvXySlvGMuDubV93fy2BFCg812FS57Srhe94v0hYKCdpEAawXY58k9pqL0nOg==",
   "success": true,
-  "projectFilePath": "C:\\repo\\WebShop\\IAMApp\\IAM\\IAM.csproj",
+  "projectFilePath": "D:\\Projects\\lexi\\GroupProject\\src\\WebShop\\IAMApp\\IAM\\IAM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jimmy\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Jimmy\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.8\\microsoft.aspnetcore.authentication.jwtbearer.5.0.8.nupkg.sha512",

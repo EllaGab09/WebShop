@@ -8,3 +8,14 @@
    text-align: middle center;
    z-index: 999;
 }
+
+.navbar {
+   position: absolute;
+   float: right;
+   right: 2%;
+   top: 5%;
+}
+
+.navbar > * {
+   margin-left: 10px;
+}

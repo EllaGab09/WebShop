@@ -1,34 +1,44 @@
-// import logo from './logo.svg';
 import './App.css';
-import { ProductList } from './Product';
-import { ImageService, ProductService, ShoppingCartService } from './_Services';
+import { Body } from './Body';
+import { StateService, ImageService, ProductService, ShoppingCartService, UserService} from './_Services';
 import { Header } from './Header';
 
 function App() {
   const apiUrl = "https://localhost:44373/api/";
-  const endpoints = {
+  const apiEndpoints = {
     getAllProducts: "Product/GetAllProducts",
     getProductDetails: "Product/GetProductDetails/"
   };
-  const imageService = new ImageService();
-  const productService = new ProductService(apiUrl, endpoints);
-  const shoppingCartService = new ShoppingCartService();
+
+  const authApiUrl = "https://localhost:44302/api/";
+  const authApiEndpoints = {
+    createUser: "UserManagement/CreateUserWithUserRole",
+    login: "Access/GetTokenForThisUser"
+  };
+
+  const services = {
+    imageService: new ImageService(),
+    productService: new ProductService(apiUrl, apiEndpoints),
+    userService: new UserService(authApiUrl, authApiEndpoints),
+    shoppingCartService: new ShoppingCartService(),
+    stateService: new StateService()
+  };
+  const states = services.stateService.getStates();
+
   return (
     <div className="App">
       <header>
         <Header name="Web Shop"
-          shoppingCartService={shoppingCartService} />
+          onClickCreateUser={()=>services.stateService.setState(states.CreateUser)}
+          onClickProducts={()=>services.stateService.setState(states.Products)}
+          onClickLogin={()=>services.stateService.setState(states.Login)}
+          shoppingCartService={services.shoppingCartService} />
       </header>
       <div className="under">
-        <ProductList
-          imageService={imageService}
-          productService={productService}
-          shoppingCartService={shoppingCartService}
-        />
+        <Body services = {services}/>
       </div>
     </div>
   );
 }
 
-//<ProductCard id = {1} productService = {productService} imageService = {imageService}/>
 export default App;
