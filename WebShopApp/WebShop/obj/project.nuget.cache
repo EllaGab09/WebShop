@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WucFetVZKbDbMlQ/q5J4QmzfRSoCOyaOXRb7uhnv1m4YOUKx+D6P8pjih1SCzwwbgF05z1rtZiI2HvRDWd1pQw==",
+  "dgSpecHash": "GAxXPCQ+Yvn7F/d/d5hzDNcUgvkXBL6tiD8UTn+mE626QSMCHwRJ1HKSAQO+GBOqIgbGPfXkIRiQpPsR0k9aFQ==",
   "success": true,
   "projectFilePath": "C:\\repo\\WebShop\\WebShopApp\\WebShop\\WebShop.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "C:\\Users\\Jimmy\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Jimmy\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Jimmy\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Jimmy\\.nuget\\packages\\objectdumper.net\\3.1.21178.1\\objectdumper.net.3.1.21178.1.nupkg.sha512",
     "C:\\Users\\Jimmy\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Jimmy\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\Jimmy\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",

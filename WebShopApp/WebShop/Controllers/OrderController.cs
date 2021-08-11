@@ -8,53 +8,58 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebShop.Infrastructure;
 using WebShop.Models;
+using WebShop.Models_DbSet;
 
 namespace WebShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    [AllowAnonymous]
+    public class OrderController : ControllerBase
     {
         private readonly IDataAccess dataAccess;
 
-        public ProductController(IDataAccess dataAccess)
+        public OrderController(IDataAccess dataAccess)
         {
             this.dataAccess = dataAccess;
         }
 
-        [HttpPost("CreateProduct")]
-        [Authorize(Roles = "Admin")]
-        public ActionResult CreateProduct()
+        [HttpPost("CreateOrder")] //Tested in Postman with "WebShopApp : CreateOrder (Localhost)"
+        //[Authorize(Roles = "Admin, User")]
+        public ActionResult CreateOrder([FromBody] DetailedOrder detailedOrder)
         {
-            return Ok("Still in dev!!");
+            dataAccess.CreateOrder(detailedOrder);
+            return Ok("Order created");
         }
 
-        [HttpPost("ReadProduct")]
-        [AllowAnonymous]
-        public ActionResult<DetailedProduct> ReadProduct([FromBody] GenericObjectId id)
+        [HttpPost("ReadOrder")] //Tested in postman with "WebShopApp : ReadOrder(Localhost)"
+        //[Authorize(Roles = "Admin")]
+        public ActionResult<DetailedOrder> ReadOrder([FromBody] Order order)
         {
-            return dataAccess.GetProductDetails(Int32.Parse(id.id));
+            return Ok(dataAccess.ReadOrder(order));
         }
 
-        [HttpPost("UpdateProduct")]
-        [Authorize(Roles = "Admin")]
-        public ActionResult UpdateProduct()
+        [HttpPost("UpdateOrder")] //Tested in postman with "WebShopApp : UpdateOrder (Localhost)"
+        //[Authorize(Roles = "Admin")]
+        public ActionResult UpdateOrder([FromBody] DetailedOrder detailedOrder)
         {
-            return Ok("Still in dev!!");
+            dataAccess.UpdateOrder(detailedOrder);
+            return Ok("Order updated");
         }
 
-        [HttpPost("DeleteProduct")]
-        [Authorize(Roles = "Admin")]
-        public ActionResult DeleteProduct()
+        [HttpPost("DeleteOrder")] //Tested in postman with "WebShopApp : DeleteOrder (Localhost)"
+        //[Authorize(Roles = "Admin")]
+        public ActionResult DeleteOrder([FromBody] Order order)
         {
-            return Ok("Still in dev!!");
+            dataAccess.DeleteOrder(order);
+            return Ok("Order deleted");
         }
 
-        [HttpGet("ReadAllProducts")]
-        [AllowAnonymous]
-        public ActionResult<List<Product>> ReadAllProducts()
+        [HttpGet("ReadAllOrders")] //Tested in postman with "WebShopApp : ReadAllOrders (Localhost)"
+        //[AllowAnonymous]
+        public ActionResult<List<Order>> ReadAllOrders()
         {
-            return dataAccess.GetAllProducts();
+            return Ok(dataAccess.ReadAllOrders());
         }
 
 

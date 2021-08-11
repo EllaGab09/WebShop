@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[5.0.8, )"
             },
+            "ObjectDumper.NET": {
+              "target": "Package",
+              "version": "[3.1.21178.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
