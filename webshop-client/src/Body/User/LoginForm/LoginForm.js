@@ -21,7 +21,7 @@ export class LoginForm extends Component {
       const userService = this.props.userService;
       const userName = this.state.userName;
       const password = this.state.password;
-      userService.login(userName, password, (response) => console.log(response));
+      userService.login(userName, password, (response) => console.log(userService.token));
       event.preventDefault();
    }
 

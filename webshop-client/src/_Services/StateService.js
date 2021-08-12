@@ -9,7 +9,10 @@ export class StateService {
       return {
          Products: 0,
          Login: 1,
-         CreateUser: 2
+         CreateUser: 2,
+         Admin: 3,
+         AddProduct: 4,
+         EditProduct: 5
       }
    }
 
@@ -18,6 +21,7 @@ export class StateService {
    }
 
    setState(state) {
+      // console.log("Setting state to", state);
       this._currentState = state;
       this.onStateUpdated.invoke(state);
    }

@@ -13,7 +13,12 @@ function App() {
   const authApiUrl = "https://localhost:44302/api/";
   const authApiEndpoints = {
     createUser: "UserManagement/CreateUserWithUserRole",
-    login: "Access/GetTokenForThisUser"
+    login: "Access/GetTokenForThisUser",
+    getUsers: "UserManagement/GetAllUsers",
+    getUserRoles: "UserManagement/ReadRolesFromUser",
+    setUserRoles: "UserManagement/WriteRolesToUser",
+    removeUser: "UserManagement/RemoveThisUser",
+    getRoles: "UserManagement/GetAllRoles"
   };
 
   const services = {
@@ -23,15 +28,18 @@ function App() {
     shoppingCartService: new ShoppingCartService(),
     stateService: new StateService()
   };
-  const states = services.stateService.getStates();
+  const stateService = services.stateService;
+  const states = stateService.getStates();
+
 
   return (
     <div className="App">
       <header>
         <Header name="Web Shop"
-          onClickCreateUser={()=>services.stateService.setState(states.CreateUser)}
-          onClickProducts={()=>services.stateService.setState(states.Products)}
-          onClickLogin={()=>services.stateService.setState(states.Login)}
+          onClickCreateUser={()=>stateService.setState(states.CreateUser)}
+          onClickProducts={()=>stateService.setState(states.Products)}
+          onClickLogin={()=>stateService.setState(states.Login)}
+          onClickAdmin={()=>stateService.setState(states.Admin)}
           shoppingCartService={services.shoppingCartService} />
       </header>
       <div className="under">

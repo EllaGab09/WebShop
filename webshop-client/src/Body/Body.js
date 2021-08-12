@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import { ProductList } from './Product';
-import { CreateUserForm, LoginForm, UserForm } from './User';
+import { CreateUserForm, LoginForm } from './User';
+import { AdminPage } from './Admin';
 
 export class Body extends Component {
+   onStateUpdatedId;
+
    constructor(props) {
       super(props);
       this.state = { renderMode: props.services.stateService.getCurrentState() }
    }
 
    componentDidMount() {
-      this.props.services.stateService.onStateUpdated.add((state) => {
+      const stateService = this.props.services.stateService;
+      this.onStateUpdatedId = stateService.onStateUpdated.add((state) => {
          this.setState({ renderMode: state })
          console.log(this.state.renderMode);
       });
+   }
+
+   componentWillUnmount() {
+      const stateService = this.props.services.stateService;
+      stateService.onStateUpdated.remove(this.onStateUpdatedId);
    }
 
    render() {
@@ -22,9 +31,10 @@ export class Body extends Component {
             return this.renderCreateUserForm();
          case renderStates.Login:
             return this.renderLoginForm();
+         case renderStates.Admin:
+            return this.renderAdmin();
          case renderStates.Products:
          default:
-            console.log("Products List");
             return this.renderProductList();
       }
    }
@@ -48,5 +58,10 @@ export class Body extends Component {
    renderLoginForm() {
       const userService = this.props.services.userService;
       return <LoginForm userService = {userService}/>;
+   }
+
+   renderAdmin() {
+      const userService = this.props.services.userService;
+      return <AdminPage userService = {userService}/>
    }
 }

@@ -11,6 +11,7 @@ export class Header extends Component {
             <button onClick = {this.props.onClickProducts}>Products</button>
             <button onClick = {this.props.onClickCreateUser}>Register</button>
             <button onClick = {this.props.onClickLogin}>Login</button>
+            <button onClick = {this.props.onClickAdmin}>Admin</button>
             <ShoppingCart shoppingCartService={cartService} />
          </div>
       </div>

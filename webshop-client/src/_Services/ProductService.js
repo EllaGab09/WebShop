@@ -40,4 +40,43 @@ export class ProductService {
             onComplete(response);
          });
    }
+
+   addProduct(product) {
+      /*
+         {
+            name,
+            price,
+            imageUrl,
+            detailedProduct: {
+               description
+            }
+         }
+      /**/
+   }
+
+   editProduct(product) {
+      /*
+         {
+            name,
+            price,
+            imageUrl,
+            detailedProduct: {
+               description
+            }
+         }
+      /**/
+   }
+
+   removeProduct(product) {
+      /*
+         {
+            name,
+            price,
+            imageUrl,
+            detailedProduct: {
+               description
+            }
+         }
+      /**/
+   }
 }
