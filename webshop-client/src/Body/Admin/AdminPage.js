@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { UserManagement } from './Users';
-import { ProductList } from './Products';
+import { ProductsList } from './Products';
 
 export class AdminPage extends Component {
    constructor(props) {
@@ -15,9 +15,15 @@ export class AdminPage extends Component {
       </p>
 
       return <div>
+         <h2>Users</h2>
          <UserManagement 
-         userService = {this.props.userService} 
-         accessDenied={this.accessDenied}/>
+            userService = {this.props.userService} 
+            accessDenied={this.accessDenied}
+         />
+         <h2>Products</h2>
+         <ProductsList
+            productService = {this.props.productService}
+         />
       </div>
    }
 

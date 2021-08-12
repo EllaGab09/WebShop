@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { UserBadge } from '.';
+import {EditBadge} from '../EditBadge';
 
 export class UserManagement extends Component {
    usersLoaded = false;
@@ -23,7 +24,6 @@ export class UserManagement extends Component {
    render() {
       const users = this.state.users;
       return <div>
-         <h3>Users:</h3>
          {this.renderUserList()}
       </div>
    }
@@ -31,17 +31,16 @@ export class UserManagement extends Component {
    renderUserList() {
       if (!this.usersLoaded) return <i>Loading users...</i>;
 
-      const userService = this.props.userService;
+      // const userService = this.props.userService;
       const users = this.state.users;
       let n = 0;
-      const userItems = users.map((user) =>
-         <li className="list-group-item" key={n++}>
-            <UserBadge 
-               email = {user}
-               userService={userService}
-               allRoles={this.state.roles}
-            />   
-         </li>
+      const userItems = users.map((user) => <EditBadge
+               key={user}
+               id={user}
+               text={user}
+               onClickEdit={this.openUserEdit}
+               onClickDelete={this.deleteUser}
+            />
       );
       return <ul className="list-group m-5 center">{userItems}</ul>
    }
@@ -55,5 +54,13 @@ export class UserManagement extends Component {
    setRoles(roles) {
       if (roles == null) return;
       this.setState({roles: roles});
+   }
+
+   openUserEdit(userId) {
+      console.log("Opening edit page for user with id", userId);
+   }
+
+   deleteUser(userId) {
+      console.log("Deleting user with id", userId);
    }
 }

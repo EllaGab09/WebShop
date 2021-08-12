@@ -62,6 +62,10 @@ export class Body extends Component {
 
    renderAdmin() {
       const userService = this.props.services.userService;
-      return <AdminPage userService = {userService}/>
+      const productService = this.props.services.productService;
+      return <AdminPage 
+         userService = {userService}
+         productService = {productService}
+      />
    }
 }

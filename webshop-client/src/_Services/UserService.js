@@ -107,14 +107,14 @@ export class UserService {
       };
       const request = new Request(requestUrl, requestSettings);
       fetch(request)
-         .then(function(response) {
+         .then(function (response) {
             if (!response.ok) {
                if (onError != null) onError();
                return null;
             }
             return response.json();
          })
-         .then(function(response) {
+         .then(function (response) {
             onComplete(response);
          });
    }
@@ -130,18 +130,17 @@ export class UserService {
       };
       const request = new Request(requestUrl, requestSettings);
       fetch(request)
-         .then(function(response) {
+         .then(function (response) {
             if (!response.ok) {
                throw new Error(`HTTP error! Status: ${response.status}`);
             }
             return response.json();
          })
-         .then(function(response) {
+         .then(function (response) {
             response.splice(0, 1);
             console.log(userName, response[0]);
             onComplete(response);
          });
-      
    }
 
    makeTokenJsonHeaders() {
@@ -158,7 +157,7 @@ export class UserService {
 
    userArrayFromJson(jsonUsers) {
       const userArray = [];
-      for(let n in jsonUsers) {
+      for (let n in jsonUsers) {
          userArray.push(jsonUsers[n]);
       }
       return userArray;
