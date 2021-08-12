@@ -48,17 +48,18 @@ export class MockProductService {
       onComplete();
    }
 
-   removeProduct(product, onComplete) {
+   removeProduct(productId, onComplete) {
       let n = 0;
       let index = -1;
       const products = this.products;
-      for(n; n <products.length; n++) {
-         if (!products[n].id == product.id) continue;
-
+      for(n = 0; n <products.length; n++) {
+         if (products[n].id !== productId) continue;
          index = n;
          break;
       }
-      if (index >= 0) products.splice(index, 1);
+      if (index >= 0) {
+         if (index >= 0) products.splice(index, 1);
+      } 
       onComplete();
    }
 }

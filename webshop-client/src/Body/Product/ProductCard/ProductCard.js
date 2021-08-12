@@ -47,8 +47,9 @@ export class ProductCard extends Component {
       let requestUrl = './images/' + imgUrl;
 
       let me = this;
-      imageService.loadImage(requestUrl, (imageAddress => 
-         me.setState({imageSource: imageAddress})));
+      imageService.loadImage(requestUrl, (imageAddress => {
+         me.setState({imageSource: imageAddress});
+      }));
    }
 
    loadProductData() {

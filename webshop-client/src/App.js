@@ -1,6 +1,6 @@
 import './App.css';
 import { Body } from './Body';
-import { StateService, ImageService, ProductService, ShoppingCartService, UserService} from './_Services';
+import { StateService, ImageService, ProductService, ShoppingCartService, UserService, MockProductService} from './_Services';
 import { Header } from './Header';
 
 function App() {
@@ -23,7 +23,8 @@ function App() {
 
   const services = {
     imageService: new ImageService(),
-    productService: new ProductService(apiUrl, apiEndpoints),
+    // productService: new ProductService(apiUrl, apiEndpoints),
+    productService: new MockProductService(),
     userService: new UserService(authApiUrl, authApiEndpoints),
     shoppingCartService: new ShoppingCartService(),
     stateService: new StateService()

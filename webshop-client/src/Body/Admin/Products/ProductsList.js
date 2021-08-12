@@ -9,11 +9,11 @@ export class ProductsList extends Component {
       this.setProducts = this.setProducts.bind(this);
       this.deleteProduct = this.deleteProduct.bind(this);
       this.openProductEdit = this.openProductEdit.bind(this);
+      this.loadProducts = this.loadProducts.bind(this);
    }
 
    componentDidMount(){
-      const productService = this.props.productService;
-      productService.getProducts(this.setProducts);
+      this.loadProducts();
    }
 
    render() {
@@ -42,6 +42,14 @@ export class ProductsList extends Component {
    }
 
    deleteProduct(productId) {
-      console.log("Deleting product with id", productId);
+      const productService = this.props.productService;
+      this.loaded = false;
+      this.setState({products: []});
+      productService.removeProduct(productId, this.loadProducts);
+   }
+
+   loadProducts() {
+      const productService = this.props.productService;
+      productService.getProducts(this.setProducts);
    }
 }
