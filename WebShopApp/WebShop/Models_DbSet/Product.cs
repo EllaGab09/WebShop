@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebShop.Models
+namespace WebShop.Models_DbSet
 {
     public class Product
     {
@@ -13,10 +13,9 @@ namespace WebShop.Models
         public string Name { get; set; }
         public int Price { get; set; }
         public string ImageUrl { get; set; }
-        public Category Category { get; set; }
-        public int CategoryIdFK { get; set; } //FK. This will hit Category PK.
-        public ICollection<Review> Reviews { get; set; }
 
+        public DetailedProduct DetailedProduct { get; set; }        //For Fluent
+        public ICollection<ProductOrder> ProductOrder { get; set; }
     }
 
 }

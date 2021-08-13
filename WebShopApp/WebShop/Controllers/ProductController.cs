@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Authorization;
-using WebShop.Models;
 using WebShop.Infrastructure;
-
+using WebShop.Models_DbSet;
 
 namespace WebShop.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController, EnableCors]
+    [ApiController]
+    [AllowAnonymous]
     public class ProductController : ControllerBase
     {
         private readonly IDataAccess dataAccess;
@@ -23,28 +23,44 @@ namespace WebShop.Controllers
             this.dataAccess = dataAccess;
         }
 
-        [HttpGet("GetAllProducts")]
-        [AllowAnonymous]
-        public ActionResult<List<Product>> GetAllProducts()
+        [HttpPost("CreateProduct")] //Tested in postman with "WebShopApp : ReadAllProducts (Localhost)"
+        //[Authorize(Roles = "Admin")]
+        public ActionResult CreateProduct([FromBody] Product product)
         {
-            return dataAccess.GetAllProducts();
+            dataAccess.CreateProduct(product);
+            return Ok("Product added");
         }
-        /*
-        [HttpPost("GetProductDetails")]
-        [AllowAnonymous]
-        public ActionResult<DetailedProduct> GetProductDetails([FromBody] string id) //continue here after weekend, minor bug here.
-        {
-            int test = Int32.Parse(id);
-            return dataAccess.GetProductDetails(test);
-        }/**/
 
-        [HttpGet("GetProductDetails")]
-        [AllowAnonymous]
-        public ActionResult<DetailedProduct> GetProductDetails(string id)
+        [HttpPost("ReadProduct")] //Tested in postman with "WebShopApp : ReadProduct (Localhost)"
+        //[AllowAnonymous]
+        public ActionResult<DetailedProduct> ReadProduct([FromBody] Product product)
         {
-            int idParsed = Int32.Parse(id);
-            return dataAccess.GetProductDetails(idParsed - 1);
+            return Ok(dataAccess.ReadProduct(product));
         }
+
+        [HttpPost("UpdateProduct")] //Tested in postman with "WebShopApp : UpdateProduct (Localhost)"
+        //[Authorize(Roles = "Admin")]
+        public ActionResult UpdateProduct([FromBody] Product product)
+        {
+            dataAccess.UpdateProduct(product);
+            return Ok("Product updated");
+        }
+
+        [HttpPost("DeleteProduct")] //Tested in postman with "WebShopApp : DeleteProduct (Localhost)"
+        //[Authorize(Roles = "Admin")]
+        public ActionResult DeleteProduct([FromBody] Product product)
+        {
+            dataAccess.DeleteProduct(product);
+            return Ok("Product deleted");
+        }
+
+        [HttpGet("ReadAllProducts")] //Tested in postman with "WebShopApp : GetAllProducts (Localhost)"
+        //[AllowAnonymous]
+        public ActionResult<List<Product>> ReadAllProducts()
+        {
+            return Ok(dataAccess.ReadAllProducts());
+        }
+
 
     }
 }

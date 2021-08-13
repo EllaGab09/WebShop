@@ -2,76 +2,93 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using WebShop.Models;
+using WebShop.Models_DbSet;
 
 namespace WebShop.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions options) : base(options)
-        { }
+        public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
-        //public DbSet<Admin> Admins { get; set; }
-        //public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Review> Reviews { get; set; }
-        //public DbSet<Order> Orders { get; set; }
-        //public DbSet<PaymentInfo> PaymentInfo { get; set; }
+        public DbSet<DetailedProduct> DetailedProducts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ProductOrder> ProductOrder { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=aspnet-WebShop-63E27D26-4209-402A-8E69-D8FA243037D3;Trusted_Connection=True;MultipleActiveResultSets=true");
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database = WebShop;");
-            base.OnConfiguring(optionsBuilder);
+            //base.OnConfiguring(optionsBuilder); //Skum rad....
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Using Fluent below
 
-            //Adding some example properties to Category, product and review
-            modelBuilder.Entity<Category>().HasKey(t => new { t.ID });
-            modelBuilder.Entity<Category>().Property(t => t.Name).IsRequired();
-            modelBuilder.Entity<Category>().Property(t => t.Name).HasMaxLength(100);
-            modelBuilder.Entity<Category>().Property(t => t.Name).HasColumnName("Category name");
-            modelBuilder.Entity<Product>().HasKey(t => new { t.Id });
-            modelBuilder.Entity<Product>().Property(t => t.Name).IsRequired();
-            modelBuilder.Entity<Product>().Property(t => t.Name).HasMaxLength(100);
-            modelBuilder.Entity<Product>().Property(t => t.Name).HasColumnName("Product name");
-            modelBuilder.Entity<Review>().HasKey(t => new { t.ID });
-            modelBuilder.Entity<Review>().Property(t => t.Author).IsRequired();
-            modelBuilder.Entity<Review>().Property(t => t.Author).HasMaxLength(100);
-            modelBuilder.Entity<Review>().Property(t => t.Author).HasColumnName("Author name");
+            //Adding some example properties
+            modelBuilder.Entity<Product>().HasKey(p => new { p.Id });
+            modelBuilder.Entity<Product>().Property(p => p.Name).IsRequired();
+            modelBuilder.Entity<Product>().Property(p => p.Name).HasMaxLength(100);
+            modelBuilder.Entity<Product>().Property(p => p.Name).HasColumnName("Product name");
+            modelBuilder.Entity<DetailedProduct>().HasKey(dp => new { dp.Id });
+            modelBuilder.Entity<Order>().HasKey(o => new { o.Id });
+            modelBuilder.Entity<ProductOrder>().HasKey(po => new { po.Id });
 
-            //Relations between Category and Product
-            modelBuilder.Entity<Category>()
-                .HasMany(c => c.Products) //A Catheogy has many products
-                .WithOne(p => p.Category) //A Product has one category
-                .HasForeignKey(p => p.CategoryIdFK); //Every product has a Foreign key pointing at Category primary key.
+            //Relations between DetailedProduct and Product
+            modelBuilder.Entity<DetailedProduct>()
+                .HasOne(p => p.Product) //A DetailedProduct has one product
+                .WithOne(dp => dp.DetailedProduct) //A Product has one DetailedProduct
+                .HasForeignKey<DetailedProduct>(dp => dp.ProductIdFK); //FK is placed in DetailedProduct, although in one-one relations we are free to put FK in any Model.
 
-            //Relations between Product and review
-            modelBuilder.Entity<Review>()
-                .HasOne(r => r.Product) //A Review has one product
-                .WithMany(r => r.Reviews) //A Product has many reviews
-                .HasForeignKey(r => r.ProductIdFK); //Every Review has a Foreign key pointing at Category primary key.
+            //Relations between Order and Product. IE many-to-many, that is, we need an in-between-table
+            modelBuilder.Entity<ProductOrder>()
+                .HasOne(sc => sc.Order)
+                .WithMany(s => s.ProductOrder)
+                .HasForeignKey(sc => sc.OrderFK);
+            modelBuilder.Entity<ProductOrder>()
+                .HasOne(sc => sc.Product)
+                .WithMany(c => c.ProductOrder)
+                .HasForeignKey(sc => sc.ProductFK); 
+
+            //Seeding
+            modelBuilder.Entity<Product>().HasData(new Product { Id = 1, Name = "Mini-Keyboard", Price = 199, ImageUrl = "SomeURL" });
+            modelBuilder.Entity<Product>().HasData(new Product { Id = 2, Name = "Gaming-keyboard", Price = 399, ImageUrl = "SomeURL" });
+            modelBuilder.Entity<Product>().HasData(new Product { Id = 3, Name = "LG 23' HD", Price = 2000, ImageUrl = "SomeURL" });
+            modelBuilder.Entity<Product>().HasData(new Product { Id = 4, Name = "Siemens 28' 4K", Price = 4000, ImageUrl = "SomeURL" });
+
+            modelBuilder.Entity<DetailedProduct>().HasData(new DetailedProduct { Id = 1, Description = "Slim keyboard", ProductIdFK = 1 });
+            modelBuilder.Entity<DetailedProduct>().HasData(new DetailedProduct { Id = 2, Description = "Kickass keyboard, solid buy", ProductIdFK = 2 });
+            modelBuilder.Entity<DetailedProduct>().HasData(new DetailedProduct { Id = 3, Description = "Small but an exellent second monitor.", ProductIdFK = 3 });
+            modelBuilder.Entity<DetailedProduct>().HasData(new DetailedProduct { Id = 4, Description = "Quick delivery, almost to big", ProductIdFK = 4 });
+
+            //"Admin@Admin.com" bought some stuff
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 1, Customer = "Admin@Admin.com", TotalPrice = 2399 });
+            modelBuilder.Entity<ProductOrder>().HasData(new ProductOrder { Id = 1, ProductFK = 2, OrderFK = 1 });
+            modelBuilder.Entity<ProductOrder>().HasData(new ProductOrder { Id = 2, ProductFK = 3, OrderFK = 1 });
+
+            //"Admin@Admin.com" bought some stuff again
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 2, Customer = "Admin@Admin.com", TotalPrice = 4000 });
+            modelBuilder.Entity<ProductOrder>().HasData(new ProductOrder { Id = 3, ProductFK = 4, OrderFK = 2 });
+
+            //root@root.com
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 3, Customer = "root@root.com", TotalPrice = 199 });
+            modelBuilder.Entity<ProductOrder>().HasData(new ProductOrder { Id = 4, ProductFK = 1, OrderFK = 3 });
 
 
 
-            //Seeding some data to play around with in the future.
 
-            modelBuilder.Entity<Product>().HasData(new Product { Id = 1, Name = "Mini-Keyboard", CategoryIdFK = 1 });
-            modelBuilder.Entity<Product>().HasData(new Product { Id = 2, Name = "Gaming-keyboard", CategoryIdFK = 1 });
-            modelBuilder.Entity<Product>().HasData(new Product { Id = 3, Name = "LG 23' HD", CategoryIdFK = 2 });
-            modelBuilder.Entity<Product>().HasData(new Product { Id = 4, Name = "Siemens 28' 4K", CategoryIdFK = 2 });
 
-            modelBuilder.Entity<Category>().HasData(new Category { ID = 1, Name = "Keyboards" });
-            modelBuilder.Entity<Category>().HasData(new Category { ID = 2, Name = "Monitors" });
 
-            modelBuilder.Entity<Review>().HasData(new Review { ID = 1, Author = "1337 gamer", Text = "Kickass keyboard, solid buy", ProductIdFK = 2 });
-            modelBuilder.Entity<Review>().HasData(new Review { ID = 2, Author = "1337 gamer", Text = "Works as a second monitor", ProductIdFK = 3 });
-            modelBuilder.Entity<Review>().HasData(new Review { ID = 3, Author = "1337 gamer", Text = "Loads of dead pixels :(", ProductIdFK = 4 });
-            modelBuilder.Entity<Review>().HasData(new Review { ID = 4, Author = "Mamma Berit", Text = "Quick delivery, almost to big", ProductIdFK = 4 });
+            //modelBuilder.Entity<Order>().HasData(new Order { CourseId = 2, CourseName = "Blazor" });
+            //modelBuilder.Entity<Order>().HasData(new Order { CourseId = 3, CourseName = "Dapper" });
+            //modelBuilder.Entity<Order>().HasData(new Order { CourseId = 4, CourseName = "EF" });
+
+
+            //modelBuilder.Entity<Student>().HasData(new Student { StudentId = 1, StudentName = "Babba" });
+            //modelBuilder.Entity<StudentCourse>().HasData(new StudentCourse { StudentCourseId = 1, MyCourseIdFK = 1, MyStudentIdFK = 1 });
+            //modelBuilder.Entity<Student>().HasData(new Student { StudentId = 2, StudentName = "Bibbi" });
+            //modelBuilder.Entity<StudentCourse>().HasData(new StudentCourse { StudentCourseId = 2, MyCourseIdFK = 1, MyStudentIdFK = 2 });
+            //modelBuilder.Entity<Student>().HasData(new Student { StudentId = 3, StudentName = "Bobbo" });
+            //modelBuilder.Entity<StudentCourse>().HasData(new StudentCourse { StudentCourseId = 3, MyCourseIdFK = 1, MyStudentIdFK = 3 });
 
 
             //Note1: in one to one relations the syntax is slightly different, also we can choose where to place the ForeighKey in one.to.on relations.
