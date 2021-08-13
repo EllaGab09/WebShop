@@ -36,6 +36,7 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.8",
+          "ObjectDumper.NET": "3.1.21178.1",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -674,6 +675,17 @@
       "Microsoft.Win32.SystemEvents/4.7.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0"
+        }
+      },
+      "ObjectDumper.NET/3.1.21178.1": {
+        "runtime": {
+          "lib/net5.0/ObjectDumping.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/net5.0/ObjectDumping.dll": {}
         }
       },
       "runtime.native.System/4.3.0": {
@@ -3221,6 +3233,13 @@
       "sha512": "sha512-mtVirZr++rq+XCDITMUdnETD59XoeMxSpLRIII7JRI6Yj0LEDiO1pPn0ktlnIj12Ix8bfvQqQDMMIF9wC98oCA==",
       "path": "microsoft.win32.systemevents/4.7.0",
       "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
+    },
+    "ObjectDumper.NET/3.1.21178.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BR8El0NBeAhNoiHZxxEPh8EIbb+BY2ZfNJ7IngDUURZSQ3ZZVmL2iOjZN+9r4JYcyPKMd9N4aRsSc1SLz7JN2A==",
+      "path": "objectdumper.net/3.1.21178.1",
+      "hashPath": "objectdumper.net.3.1.21178.1.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",

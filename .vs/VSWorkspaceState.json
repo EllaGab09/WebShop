@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\IAMApp"
+    "\\IAMApp",
+    "\\WebShopApp"
   ],
-  "SelectedNode": "\\IAMApp\\IAMApp.sln",
+  "SelectedNode": "\\WebShopApp\\WebShopApp.sln",
   "PreviewInSolutionExplorer": false
 }
