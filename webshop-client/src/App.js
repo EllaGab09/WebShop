@@ -12,6 +12,7 @@ function App() {
     getProductDetails: "Product/ReadProduct",
     createProduct: "Product/CreateProduct",
     editProduct: "Product/UpdateProduct",
+    deleteProduct: "Product/DeleteProduct",
     addOrder: "Order/CreateOrder",
     getOrder: "Order/ReadOrder",
     changeOrder: "Order/UpdateOrder",

@@ -19,10 +19,10 @@ export class ProductOrderCard extends Component {
 
    render() {
       if (this.loading) return <p>Product Order Card</p>
-      const name = this.state.productName;
+      const name = this.props.name;
       const amount = this.state.amount;
-      const totalCost = this.state.productCost * this.state.amount;
-      const costPer = this.state.productCost;
+      const costPer = this.props.price;
+      const totalCost = amount * costPer;
       const addButton = <button className="btn btn-primary" onClick={this.addOne}>Add</button>
       const removeButton = <button className="btn btn-primary" onClick={this.removeOne}>Remove</button>
       return <div>
@@ -42,7 +42,7 @@ export class ProductOrderCard extends Component {
    addOne() {
       const shoppingCart = this.props.shoppingCartService;
       let amount = this.state.amount + 1;
-      shoppingCart.addItem(this.props.productId, ()=>{});
+      shoppingCart.addItem(this.props.productId);
       this.setState({amount: amount});
    }
 
@@ -50,7 +50,7 @@ export class ProductOrderCard extends Component {
       const shoppingCart = this.props.shoppingCartService;
       const productId = this.props.productId;
       let amount = this.state.amount - 1;
-      shoppingCart.removeItem(productId, ()=>{});
+      shoppingCart.removeItem(productId);
       if (amount < 0) {
          return;
       }

@@ -16,7 +16,7 @@ export class ShoppingCartService {
       callback(this.products); 
    }
 
-   removeItem(productId, callback) {
+   removeItem(productId, callback = null) {
       // console.log("Removing product from cart:", product.name);
       for(let n = 0; n < this.products.length; n++) {
          if (this.products[n].id !== productId) continue;
@@ -25,28 +25,28 @@ export class ShoppingCartService {
             this.products.splice(n, 1);
          }
       }
-      callback();
+      if (callback !== null) callback();
       this.onItemsUpdated.invoke(this);
    }
 
-   addItem(productId, name, price, callback) {
+   addItem(productId, name, price, callback = null) {
       // console.log("Adding product to cart:", productId);
       
       for(let n = 0; n < this.products.length; n++) {
          if (this.products[n].id !== productId) continue;
          this.products[n].amount++;
-         callback();
+         if (callback !== null) callback();
          this.onItemsUpdated.invoke(this);
          return;
       }
 
       this.products.push({id:productId, name: name, amount: 1, price: price});
-      callback();
+      if (callback !== null) callback();
       this.onItemsUpdated.invoke(this);
    }
 
    clearItems() {
-      console.log("Clearing shopping cart");
+      // console.log("Clearing shopping cart");
       this.products = [];
       this.onItemsUpdated.invoke(this);
    }

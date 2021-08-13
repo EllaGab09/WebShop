@@ -47,6 +47,8 @@ export class CheckoutPage extends Component {
       const itemsInCart = this.state.items;
       const itemCards = itemsInCart.map(item => <li key={item.id}><ProductOrderCard
          productId={item.id}
+         name={item.name}
+         price={item.price}
          amount={item.amount}
          productService={this.props.productService}
          shoppingCartService={this.props.shoppingCartService}

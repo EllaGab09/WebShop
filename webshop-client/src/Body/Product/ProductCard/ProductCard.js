@@ -28,7 +28,7 @@ export class ProductCard extends Component {
    }
 
    handleClick() {
-      this.props.onClick(this.props.id);
+      this.props.onClick(this.props.product.id);
    }
 
    componentDidMount() {
@@ -37,7 +37,7 @@ export class ProductCard extends Component {
    }
 
    loadImage() {
-      const imgUrl = this.props.product.imageThumb;
+      const imgUrl = this.props.product.imageUrl;
       if (imgUrl === "") return;
       
       // console.log(`Loading image url: ${imgUrl}`)

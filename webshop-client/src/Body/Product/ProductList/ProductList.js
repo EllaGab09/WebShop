@@ -47,7 +47,7 @@ export class ProductList extends Component {
       let displayItems = this.state.displayItems;
       
       for (let n = 0; n < displayItems.length; n++) {
-         if (displayItems[n].props.id === productKey) {
+         if (displayItems[n].props.product.id === productKey) {
             const product = displayItems[n].props.product;
             const newItem = <ProductDetails 
                product={product}
