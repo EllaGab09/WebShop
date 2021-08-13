@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { UserBadge } from '.';
 import {EditBadge} from '../EditBadge';
+import {Delegate} from '../../../Library';
 
 export class UserManagement extends Component {
    usersLoaded = false;
+   onClickDelete = new Delegate(this, this.deleteUser);
    constructor(props) {
       super(props);
       this.state = {
@@ -15,12 +17,11 @@ export class UserManagement extends Component {
       this.setRoles = this.setRoles.bind(this);
       this.openUserEdit = this.openUserEdit.bind(this);
       this.deleteUser = this.deleteUser.bind(this);
+      this.loadUserList = this.loadUserList.bind(this);
    }
 
    componentDidMount() {
-      const userService = this.props.userService;
-      userService.getUsers(this.setUsers, ()=>this.props.accessDenied.invoke());
-      userService.getRoles(this.setRoles);
+      this.loadUserList();
    }
 
    render() {
@@ -41,10 +42,15 @@ export class UserManagement extends Component {
                id={user}
                text={user}
                onClickEdit={this.props.onEditUser}
-               onClickDelete={this.props.deleteUser}
+               onClickDelete={this.onClickDelete}
             />
       );
       return <ul className="list-group m-5 center">{userItems}</ul>
+   }
+
+   loadUserList() {
+      const userService = this.props.userService;
+      userService.getUsers(this.setUsers, ()=>this.props.accessDenied.invoke());
    }
 
    setUsers(users) {
@@ -65,5 +71,7 @@ export class UserManagement extends Component {
 
    deleteUser(userId) {
       console.log("Deleting user with id", userId);
+      const userService = this.props.userService;
+      userService.deleteUser(userId, this.loadUserList);
    }
 }

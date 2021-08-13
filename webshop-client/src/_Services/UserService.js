@@ -161,4 +161,26 @@ export class UserService {
       return userArray;
    }
 
+   deleteUser(userId, onComplete) {
+      const requestUrl = this.apiUrl + this.endpoints.removeUser;
+      const headers = this.makeTokenJsonHeaders();
+      const requestBody = `{ "email": "${userId}"}`;
+      const requestSettings = {
+         method: 'POST',
+         headers: headers,
+         body: requestBody
+      };
+      const request = new Request(requestUrl, requestSettings);
+      fetch(request)
+         .then(function (response) {
+            if (!response.ok) {
+               throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.blob();
+         })
+         .then(function (response) {
+            onComplete();
+         });
+   }
+
 }
