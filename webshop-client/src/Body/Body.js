@@ -8,15 +8,47 @@ export class Body extends Component {
 
    constructor(props) {
       super(props);
-      this.state = { renderMode: props.services.stateService.getCurrentState() }
+      this.state = { bodyRender: null }
+      this.renderProductList = this.renderProductList.bind(this);
+      this.renderCreateUserForm = this.renderCreateUserForm.bind(this);
+      this.renderLoginForm = this.renderLoginForm.bind(this);
+      this.renderAdmin = this.renderAdmin.bind(this);
+      this.renderCheckout = this.renderCheckout.bind(this);
+      this.renderAbout = this.renderAbout.bind(this);
    }
 
    componentDidMount() {
-      const stateService = this.props.services.stateService;
-      this.onStateUpdatedId = stateService.onStateUpdated.add((state) => {
-         this.setState({ renderMode: state })
-         console.log(this.state.renderMode);
-      });
+      this.addStatesToStatemachine();
+      const stateMachine = this.props.stateMachine;
+      this.onStateUpdatedId = stateMachine.onStateUpdated.add((state) => 
+         this.setState({ bodyRender: state.render })
+      );
+   }
+
+   addStatesToStatemachine() {
+      const stateMachine = this.props.stateMachine;
+      const states = [
+         {
+            id:'login',
+            render: this.renderLoginForm
+         }, {
+            id: 'register',
+            render: this.renderCreateUserForm
+         }, {
+            id: 'admin',
+            render: this.renderAdmin
+         }, {
+            id: 'shop',
+            render: this.renderProductList
+         }, {
+            id: 'checkout',
+            render: this.renderCheckout
+         }, {
+            id: 'about',
+            render: this.renderAbout
+         }
+      ]
+      stateMachine.states = states;
    }
 
    componentWillUnmount() {
@@ -25,18 +57,8 @@ export class Body extends Component {
    }
 
    render() {
-      const renderStates = this.props.services.stateService.getStates();
-      switch (this.state.renderMode) {
-         case renderStates.CreateUser:
-            return this.renderCreateUserForm();
-         case renderStates.Login:
-            return this.renderLoginForm();
-         case renderStates.Admin:
-            return this.renderAdmin();
-         case renderStates.Products:
-         default:
-            return this.renderProductList();
-      }
+      if (this.state.bodyRender == null) return <div></div>
+      return this.state.bodyRender();
    }
 
    renderProductList() {
@@ -52,20 +74,38 @@ export class Body extends Component {
 
    renderCreateUserForm() {
       const userService = this.props.services.userService;
-      return <CreateUserForm userService = {userService}/>;
+      
+      return <div>
+         <h2>Register</h2>
+         <CreateUserForm userService = {userService}/>;
+         </div>
    }
 
    renderLoginForm() {
       const userService = this.props.services.userService;
-      return <LoginForm userService = {userService}/>;
+      return <div>
+         <h2>Login</h2>
+         <LoginForm userService = {userService}/>;
+      </div>
+      
    }
 
    renderAdmin() {
       const userService = this.props.services.userService;
       const productService = this.props.services.productService;
-      return <AdminPage 
+      const services = this.props.services;
+      return <AdminPage
+         services = {services}
          userService = {userService}
          productService = {productService}
       />
+   }
+
+   renderCheckout() {
+      return <p>Checkout</p>
+   }
+
+   renderAbout() {
+      return <p>About</p>
    }
 }

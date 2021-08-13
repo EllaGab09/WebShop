@@ -1,7 +1,9 @@
 import './App.css';
 import { Body } from './Body';
-import { StateService, ImageService, ProductService, ShoppingCartService, UserService, MockProductService} from './_Services';
+import { ImageService, ProductService, ShoppingCartService, UserService, MockProductService } from './_Services';
 import { Header } from './Header';
+import { MockOrderService } from './_Services/MockOrderService';
+import { StateMachine } from './Library';
 
 function App() {
   const apiUrl = "https://localhost:44373/api/";
@@ -27,24 +29,23 @@ function App() {
     productService: new MockProductService(),
     userService: new UserService(authApiUrl, authApiEndpoints),
     shoppingCartService: new ShoppingCartService(),
-    stateService: new StateService()
+    orderService: new MockOrderService()
   };
   const stateService = services.stateService;
-  const states = stateService.getStates();
-
+  const bodyStateMachine = new StateMachine();
 
   return (
     <div className="App">
       <header>
         <Header name="Web Shop"
-          onClickCreateUser={()=>stateService.setState(states.CreateUser)}
-          onClickProducts={()=>stateService.setState(states.Products)}
-          onClickLogin={()=>stateService.setState(states.Login)}
-          onClickAdmin={()=>stateService.setState(states.Admin)}
+          stateMachine={bodyStateMachine}
           shoppingCartService={services.shoppingCartService} />
       </header>
       <div className="under">
-        <Body services = {services}/>
+        <Body
+          services={services}
+          stateMachine={bodyStateMachine}
+        />
       </div>
     </div>
   );

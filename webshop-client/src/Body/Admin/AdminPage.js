@@ -56,13 +56,13 @@ export class AdminPage extends Component {
       return <div>
          <h2>Users</h2>
          <UserManagement 
-            userService = {this.props.userService} 
+            userService = {this.props.services.userService} 
             accessDenied={this.accessDenied}
             onEditUser={this.editUserClicked}
          />
          <h2>Products</h2>
          <ProductsList
-            productService = {this.props.productService}
+            productService = {this.props.services.productService}
             onEditProduct={this.editProductClicked}
          />
       </div>
@@ -77,7 +77,7 @@ export class AdminPage extends Component {
    }
 
    setBodyToRenderUser(userName) {
-      this.setState({displayedPage: <p>Editing {userName}</p>});
+      this.setState({displayedPage: <EditUser services={this.props.services} userId={userName} />});
    }
 
    setBodyToRenderEditProduct(productId) {
