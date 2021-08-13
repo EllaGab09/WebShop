@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
-import {EditBadge} from '../EditBadge';
+import { EditBadge } from '../EditBadge';
+
+import { Action } from '../../../Library';
 
 export class ProductsList extends Component {
    loaded = false;
+
+   editClicked = new Action();
+   deleteClicked = new Action();
+
    constructor(props) {
       super(props);
-      this.state={products:[]};
+      this.state = { products: [] };
       this.setProducts = this.setProducts.bind(this);
       this.deleteProduct = this.deleteProduct.bind(this);
       this.openProductEdit = this.openProductEdit.bind(this);
       this.loadProducts = this.loadProducts.bind(this);
+
+      this.editClicked.add(this.openProductEdit, this);
+      this.deleteClicked.add(this.deleteProduct, this);
    }
 
-   componentDidMount(){
+   componentDidMount() {
       this.loadProducts();
    }
 
@@ -23,8 +32,8 @@ export class ProductsList extends Component {
             text={product.name}
             key={product.id}
             id={product.id}
-            onClickEdit={this.openProductEdit}
-            onClickDelete={this.deleteProduct}
+            onClickEdit={this.props.onEditProduct}
+            onClickDelete={this.deleteClicked}
          />
       });
       return <ul>
@@ -34,7 +43,7 @@ export class ProductsList extends Component {
 
    setProducts(products) {
       this.loaded = true;
-      this.setState({products:products});
+      this.setState({ products: products });
    }
 
    openProductEdit(productId) {
@@ -44,7 +53,7 @@ export class ProductsList extends Component {
    deleteProduct(productId) {
       const productService = this.props.productService;
       this.loaded = false;
-      this.setState({products: []});
+      this.setState({ products: [] });
       productService.removeProduct(productId, this.loadProducts);
    }
 

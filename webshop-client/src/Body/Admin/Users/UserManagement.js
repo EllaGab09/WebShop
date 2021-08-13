@@ -13,6 +13,8 @@ export class UserManagement extends Component {
 
       this.setUsers = this.setUsers.bind(this);
       this.setRoles = this.setRoles.bind(this);
+      this.openUserEdit = this.openUserEdit.bind(this);
+      this.deleteUser = this.deleteUser.bind(this);
    }
 
    componentDidMount() {
@@ -38,7 +40,7 @@ export class UserManagement extends Component {
                key={user}
                id={user}
                text={user}
-               onClickEdit={this.openUserEdit}
+               onClickEdit={this.props.onEditUser}
                onClickDelete={this.deleteUser}
             />
       );
@@ -58,6 +60,7 @@ export class UserManagement extends Component {
 
    openUserEdit(userId) {
       console.log("Opening edit page for user with id", userId);
+      this.props.onEditUser(userId);
    }
 
    deleteUser(userId) {

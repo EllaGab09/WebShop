@@ -47,4 +47,8 @@ export class ProductForm extends Component {
          description: this.state.description
       }
    }
+
+   render() {
+      return <p>Product Form</p>
+   }
 }
