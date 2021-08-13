@@ -80,11 +80,20 @@ export class AdminPage extends Component {
    }
 
    setBodyToRenderUser(userName) {
-      this.setState({displayedPage: <EditUser services={this.props.services} userId={userName} />});
+      console.log("Opening edit for user", userName);
+      this.setState({displayedPage: <EditUser 
+         services={this.props.services} 
+         userId={userName} 
+      />});
    }
 
    setBodyToRenderEditProduct(productId) {
-      this.setState({displayedPage: <p>Editing Product with id {productId}</p>});
+      const productService = this.props.services.productService;
+      this.setState({displayedPage: <EditProduct
+         productId={productId}
+         productService={productService}
+         submitRedirect={this.goToOverview}
+      />});
    }
 
    setBodyToRenderAddProduct() {

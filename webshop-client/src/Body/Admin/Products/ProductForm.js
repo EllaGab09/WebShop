@@ -40,7 +40,11 @@ export class ProductForm extends Component {
    changeDescription(event) { this.setState({ description: event.target.value }); }
 
    getEnteredProduct() {
+      let id = -1;
+      const existingProduct = this.props.existingProduct;
+      if (existingProduct != null) id = existingProduct.id;
       return {
+         id: id,
          name: this.state.name,
          price: this.state.price,
          imageThumb: this.state.imageThumb,

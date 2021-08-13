@@ -41,7 +41,7 @@ export class UserManagement extends Component {
                id={user}
                text={user}
                onClickEdit={this.props.onEditUser}
-               onClickDelete={this.deleteUser}
+               onClickDelete={this.props.deleteUser}
             />
       );
       return <ul className="list-group m-5 center">{userItems}</ul>

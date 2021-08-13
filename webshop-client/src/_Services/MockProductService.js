@@ -14,7 +14,6 @@ export class MockProductService {
          });
       });
       onComplete(products);
-      
    }
 
    getProduct(id, onComplete) {
@@ -30,12 +29,13 @@ export class MockProductService {
    }
 
    addProduct(product, onComplete = null) {
+      product.id = this.products.length;
       this.products.push(product);
       if (onComplete != null) onComplete();
    }
 
-   editProduct(product, onComplete) {
-      for (let n; n < this.products.length; n++) {
+   editProduct(product, onComplete = null) {
+      for (let n = 0; n < this.products.length; n++) {
          const storedProduct = this.products[n];
          if (storedProduct.id != product.id) continue;
 
@@ -43,9 +43,10 @@ export class MockProductService {
          storedProduct.price = product.price;
          storedProduct.imageUrl = product.imageUrl;
          storedProduct.description = product.description;
+         console.log(storedProduct.name);
          break;
       }
-      onComplete();
+      if (onComplete != null) onComplete();
    }
 
    removeProduct(productId, onComplete) {

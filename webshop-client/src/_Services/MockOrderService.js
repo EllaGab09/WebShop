@@ -1,15 +1,16 @@
 export class MockOrderService {
    customers = [];
-
+   nextId = 0;
    makeOrder(customer, products, onComplete = null) {
       console.log("Making order:",customer,products);
       const order = {
+         id: this.nextId++,
          customer: customer,
          products: products
       }
       for(let n = 0; n < this.customers.length; n++) {
          if (this.customers[n].id === customer) {
-            this.customers[n].push(order);
+            this.customers[n].orders.push(order);
             if (onComplete != null) onComplete(order);
             return;
          }
@@ -20,6 +21,7 @@ export class MockOrderService {
          orders: [order]
       };
       this.customers.push(newCustomer);
+      console.log(this.customers);
       if (onComplete != null) onComplete(order);
 
       // Data to send: customer(email, string), [products {id, count}]
@@ -54,20 +56,34 @@ export class MockOrderService {
 
    deleteOrder(orderId, onComplete) {
       console.log("Deleting order:",orderId);
-      /*
-      {
-         order: {id}
+      for(let n = 0; n < this.customers.length; n++) {
+         let customer = this.customers[n];
+         for(let i = 0; i < customer.orders.length; i++) {
+            if (customer.orders[i].id === orderId) {
+               customer.orders.splice(i, 1);
+               onComplete(customer.orders);
+               return;
+            }
+         }
       }
-      /**/
    }
 
    getAllOrders(onComplete) {
       console.log("Getting all orders");
    }
 
-   getAllOrdersFromCustomer(customer, onComplete) {
-      console.log("Getting all orders from",customer);
-      // GetAllOrders() => filter by customer
+   getAllOrdersFromCustomer(customerId, onComplete) {
+      // console.log("Getting all orders from", customerId);
+      console.log(customerId);
+      console.log(this);
+      let customerOrders = [];
+      for(let n = 0; n < this.customers.length; n++) {
+         if (this.customers[n].id === customerId) {
+            customerOrders = this.customers[n];
+            break;
+         }
+      }
+      onComplete(customerOrders.orders);
    }
 
 

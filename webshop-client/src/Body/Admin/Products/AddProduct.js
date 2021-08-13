@@ -11,7 +11,7 @@ export class AddProduct extends Component {
 
    render() {
       return <div>
-         <h2>Add product</h2>
+         <h3>Add product</h3>
          <ProductForm
             submit={this.onSubmit}
          />
