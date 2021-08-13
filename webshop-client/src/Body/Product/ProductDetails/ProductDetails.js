@@ -11,10 +11,11 @@ export class ProductDetails extends Component {
       this.addToCart=this.addToCart.bind(this);
    }
    render() {
-      const product = this.state.product;
+      const product = this.props.product;
+      const productDetails = this.state.product;
       const imgSrc = this.state.imageSource;
       const name = product.name;
-      const description = product.description;
+      const description = productDetails.description;
       const price = product.price + " kr";
 
       return <div className="productDetails container m-1">
@@ -40,19 +41,19 @@ export class ProductDetails extends Component {
 
    addToCart() {
       const cartService = this.props.shoppingCartService;
-      const id = this.props.id;
-      const me = this;
-      const price = this.state.product.price;
-      const name = this.state.product.name;
+      const product = this.props.product;
+      const id = product.id;
+      const price = product.price;
+      const name = product.name;
       cartService.addItem(id, name, price, () => {});
    }
 
    minimize() {
-      this.props.onClick(this.props.id);
+      this.props.onClick(this.props.product);
    }
 
    loadProductData() {
-      const productId = this.props.id;
+      const productId = this.props.product.id;
       const me = this;
       const productService = this.props.productService;
 

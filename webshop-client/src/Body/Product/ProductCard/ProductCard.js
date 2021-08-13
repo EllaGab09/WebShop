@@ -4,10 +4,8 @@ import React, { Component } from 'react';
 export class ProductCard extends Component {
    constructor(props) {
       super(props);
-      const blankProduct = {id: 0, name: "", price: 0, imageUrl: ""};
       this.state = {
-         imageSource: "", 
-         product: blankProduct ,
+         imageSource: "",
          gridType: "col-lg-3 col-md-4 col-sm-6 col-xs-12"
       };
       this.handleClick = this.handleClick.bind(this);
@@ -16,11 +14,11 @@ export class ProductCard extends Component {
    
    render() {
       let imgSrc = this.state.imageSource;
-      let product = this.state.product;
+      let product = this.props.product;
 
       let name = product.name;
       let price = product.price;
-      return <div key={this.state.product.id} className={this.state.gridType} >
+      return <div key={product.id} className={this.state.gridType} >
          <div className= "productCard card" onClick = {this.handleClick}>
             <img className="card-img-top" src = {imgSrc} alt = {name} width = '100%'></img>
             <h4 className="card-title text-primary"><b>{name}</b></h4>
@@ -34,11 +32,12 @@ export class ProductCard extends Component {
    }
 
    componentDidMount() {
-      this.loadProductData();
+      this.loadImage();
+      // this.loadProductData();
    }
 
    loadImage() {
-      const imgUrl = this.state.product.imageThumb;
+      const imgUrl = this.props.product.imageThumb;
       if (imgUrl === "") return;
       
       // console.log(`Loading image url: ${imgUrl}`)

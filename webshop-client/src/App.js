@@ -1,6 +1,6 @@
 import './App.css';
 import { Body } from './Body';
-import { ImageService, ProductService, ShoppingCartService, UserService, MockProductService } from './_Services';
+import { ImageService, ProductService, ShoppingCartService, UserService, MockProductService, OrderService } from './_Services';
 import { Header } from './Header';
 import { MockOrderService } from './_Services/MockOrderService';
 import { StateMachine } from './Library';
@@ -8,8 +8,15 @@ import { StateMachine } from './Library';
 function App() {
   const apiUrl = "https://localhost:44373/api/";
   const apiEndpoints = {
-    getAllProducts: "Product/GetAllProducts",
-    getProductDetails: "Product/GetProductDetails/"
+    getAllProducts: "Product/ReadAllProducts",
+    getProductDetails: "Product/ReadProduct",
+    createProduct: "Product/CreateProduct",
+    editProduct: "Product/UpdateProduct",
+    addOrder: "Order/CreateOrder",
+    getOrder: "Order/ReadOrder",
+    changeOrder: "Order/UpdateOrder",
+    removeOrder: "Order/DeleteOrder",
+    getAllOrders: "Order/ReadAllOrders",
   };
 
   const authApiUrl = "https://localhost:44302/api/";
@@ -25,11 +32,12 @@ function App() {
 
   const services = {
     imageService: new ImageService(),
-    // productService: new ProductService(apiUrl, apiEndpoints),
-    productService: new MockProductService(),
+    productService: new ProductService(apiUrl, apiEndpoints),
+    // productService: new MockProductService(),
     userService: new UserService(authApiUrl, authApiEndpoints),
     shoppingCartService: new ShoppingCartService(),
-    orderService: new MockOrderService()
+    orderService: new OrderService(apiUrl, apiEndpoints)
+    // orderService: new MockOrderService()
   };
   const stateService = services.stateService;
   const bodyStateMachine = new StateMachine();

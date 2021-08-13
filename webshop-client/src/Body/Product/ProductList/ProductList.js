@@ -28,8 +28,8 @@ export class ProductList extends Component {
 
       for (let n = 0; n < products.length; n++) {
          productCards.push(<ProductCard
-            id={products[n].id}
-            key={n}
+            product={products[n]}
+            key={products[n].id}
             productService={productService}
             imageService={imageService}
             onClick={expandProduct}
@@ -48,9 +48,9 @@ export class ProductList extends Component {
       
       for (let n = 0; n < displayItems.length; n++) {
          if (displayItems[n].props.id === productKey) {
-            const id = displayItems[n].props.id;
+            const product = displayItems[n].props.product;
             const newItem = <ProductDetails 
-               id ={id}
+               product={product}
                key={n}
                productService={productService}
                imageService={imageService}
@@ -64,17 +64,17 @@ export class ProductList extends Component {
       this.setState({ displayItems: displayItems });
    }
 
-   minimizeProduct(productKey) {
+   minimizeProduct(product) {
       const productService = this.props.productService;
       const imageService = this.props.imageService;
       const expandProduct = this.expandProduct;
       const displayItems = this.state.displayItems;
+      const productId = product.id;
 
       for (let n = 0; n < displayItems.length; n++) {
-         if (displayItems[n].props.id === productKey) {
-            const id = displayItems[n].props.id;
+         if (displayItems[n].props.product.id === productId) {
             const newItem = <ProductCard
-               id={id}
+               product={product}
                key={n}
                productService={productService}
                imageService={imageService}
