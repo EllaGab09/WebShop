@@ -42,8 +42,9 @@ export class ProductDetails extends Component {
       const cartService = this.props.shoppingCartService;
       const id = this.props.id;
       const me = this;
-      cartService.addItem(id, () => console.log("Added",
-         me.state.product.name,"to shopping cart"));
+      const price = this.state.product.price;
+      const name = this.state.product.name;
+      cartService.addItem(id, name, price, () => {});
    }
 
    minimize() {

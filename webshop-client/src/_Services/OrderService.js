@@ -1,6 +1,6 @@
 export class OrderService {
 
-   MakeOrder(customer, products) {
+   makeOrder(customer, products) {
       // Data to send: customer(email, string), [products {id, count}]
       /* 
       {
@@ -12,13 +12,13 @@ export class OrderService {
       /**/
    }
 
-   GetOrder(orderId) {
+   getOrder(orderId) {
       // Send order id in body {id} 
 
    }
 
 
-   UpdateOrder(orderId, products) {
+   updateOrder(orderId, products) {
       /*
       {
          order: {
@@ -29,7 +29,7 @@ export class OrderService {
       /**/
    }
 
-   DeleteOrder(orderId) {
+   deleteOrder(orderId) {
       /*
       {
          order: {id}
@@ -37,11 +37,11 @@ export class OrderService {
       /**/
    }
 
-   GetAllOrders() {
+   getAllOrders() {
       
    }
 
-   GetAllOrdersFromCustomer(customer) {
+   getAllOrdersFromCustomer(customer) {
       // GetAllOrders() => filter by customer
    }
 

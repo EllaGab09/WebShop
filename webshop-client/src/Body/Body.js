@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ProductList } from './Product';
+import { ProductList, CheckoutPage } from './Product';
 import { CreateUserForm, LoginForm } from './User';
 import { AdminPage } from './Admin';
 
@@ -20,16 +20,21 @@ export class Body extends Component {
    componentDidMount() {
       this.addStatesToStatemachine();
       const stateMachine = this.props.stateMachine;
-      this.onStateUpdatedId = stateMachine.onStateUpdated.add((state) => 
+      this.onStateUpdatedId = stateMachine.onStateUpdated.add((state) =>
          this.setState({ bodyRender: state.render })
       );
+   }
+
+   componentWillUnmount() {
+      const stateMachine = this.props.stateMachine;
+      stateMachine.onStateUpdated.remove(this.onStateUpdatedId);
    }
 
    addStatesToStatemachine() {
       const stateMachine = this.props.stateMachine;
       const states = [
          {
-            id:'login',
+            id: 'login',
             render: this.renderLoginForm
          }, {
             id: 'register',
@@ -51,10 +56,7 @@ export class Body extends Component {
       stateMachine.states = states;
    }
 
-   componentWillUnmount() {
-      const stateService = this.props.services.stateService;
-      stateService.onStateUpdated.remove(this.onStateUpdatedId);
-   }
+
 
    render() {
       if (this.state.bodyRender == null) return <div></div>
@@ -74,10 +76,10 @@ export class Body extends Component {
 
    renderCreateUserForm() {
       const userService = this.props.services.userService;
-      
+
       return <div>
          <h2>Register</h2>
-         <CreateUserForm userService = {userService}/>;
+         <CreateUserForm userService={userService} />;
          </div>
    }
 
@@ -85,9 +87,9 @@ export class Body extends Component {
       const userService = this.props.services.userService;
       return <div>
          <h2>Login</h2>
-         <LoginForm userService = {userService}/>;
+         <LoginForm userService={userService} />;
       </div>
-      
+
    }
 
    renderAdmin() {
@@ -95,14 +97,23 @@ export class Body extends Component {
       const productService = this.props.services.productService;
       const services = this.props.services;
       return <AdminPage
-         services = {services}
-         userService = {userService}
-         productService = {productService}
+         services={services}
+         userService={userService}
+         productService={productService}
       />
    }
 
    renderCheckout() {
-      return <p>Checkout</p>
+      const shoppingCart = this.props.services.shoppingCartService;
+      const productService = this.props.services.productService;
+      const userService = this.props.services.userService;
+      const orderService = this.props.services.orderService;
+      return <CheckoutPage
+         shoppingCartService={shoppingCart}
+         productService={productService}
+         userService={userService}
+         orderService={orderService}
+      />
    }
 
    renderAbout() {

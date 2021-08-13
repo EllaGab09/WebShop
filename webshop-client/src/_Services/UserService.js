@@ -1,8 +1,5 @@
 export class UserService {
-   user = {
-      email: '',
-      password: ''
-   };
+   currentUser='';
    token;
    apiUrl;
    endpoints;
@@ -53,6 +50,7 @@ export class UserService {
             return response.text();
          })
          .then(function (response) {
+            me.currentUser=email;
             me.token = response;
             onComplete();
          });
