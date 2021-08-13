@@ -19,7 +19,7 @@ export class UserManagement extends Component {
 
    componentDidMount() {
       const userService = this.props.userService;
-      userService.getUsers(this.setUsers, this.props.accessDenied);
+      userService.getUsers(this.setUsers, ()=>this.props.accessDenied.invoke());
       userService.getRoles(this.setRoles);
    }
 

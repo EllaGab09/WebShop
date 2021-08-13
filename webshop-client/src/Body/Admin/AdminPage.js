@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { UserManagement, EditUser, EditOrder } from './Users';
 import { ProductsList, AddProduct, EditProduct } from './Products';
-import { Action } from '../../Library/Action';
+import { Action, Delegate } from '../../Library';
 
 export class AdminPage extends Component {
    Pages = {
@@ -14,6 +14,8 @@ export class AdminPage extends Component {
 
    editUserClicked = new Action();
    editProductClicked = new Action();
+   onAccessDenied = new Action();
+   goToOverview = new Delegate(this, this.setBodyToRenderOverview);
    
    constructor(props) {
       super(props);
@@ -24,7 +26,8 @@ export class AdminPage extends Component {
 
       this.editUserClicked.add(this.setBodyToRenderUser, this);
       this.editProductClicked.add(this.setBodyToRenderEditProduct, this);
-      
+      this.onAccessDenied.add(this.accessDenied, this);
+
       this.accessDenied = this.accessDenied.bind(this);
       this.setBodyToRenderAddProduct = this.setBodyToRenderAddProduct.bind(this);
       this.setBodyToRenderOverview = this.setBodyToRenderOverview.bind(this);
@@ -46,7 +49,7 @@ export class AdminPage extends Component {
    }
 
    renderAdminNavbar() {
-      return <div className>
+      return <div>
          <button className="btn btn-primary m-1" onClick={this.setBodyToRenderOverview}>Overview</button>
          <button className="btn btn-primary m-1" onClick={this.setBodyToRenderAddProduct}>Add Product</button>
          </div>
@@ -57,7 +60,7 @@ export class AdminPage extends Component {
          <h2>Users</h2>
          <UserManagement 
             userService = {this.props.services.userService} 
-            accessDenied={this.accessDenied}
+            accessDenied={this.onAccessDenied}
             onEditUser={this.editUserClicked}
          />
          <h2>Products</h2>
@@ -85,6 +88,10 @@ export class AdminPage extends Component {
    }
 
    setBodyToRenderAddProduct() {
-      this.setState({displayedPage: <p>Adding new product</p>});
+      const productService = this.props.services.productService;
+      this.setState({displayedPage: <AddProduct 
+         productService={productService}
+         submitRedirect={this.goToOverview}
+      />});
    }
 }

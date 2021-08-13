@@ -17,6 +17,7 @@ export class ProductForm extends Component {
       this.changeImageUrl = this.changeImageUrl.bind(this);
       this.changeDescription = this.changeDescription.bind(this);
       this.getEnteredProduct = this.getEnteredProduct.bind(this);
+      this.submit = this.submit.bind(this);
    }
 
    componentDidMount() {
@@ -39,7 +40,7 @@ export class ProductForm extends Component {
    changeDescription(event) { this.setState({ description: event.target.value }); }
 
    getEnteredProduct() {
-      const product = {
+      return {
          name: this.state.name,
          price: this.state.price,
          imageThumb: this.state.imageThumb,
@@ -49,6 +50,27 @@ export class ProductForm extends Component {
    }
 
    render() {
-      return <p>Product Form</p>
+      return <form onSubmit={this.submit}>
+         {this.textForm("Name:", this.state.name, this.changeName)}
+         {this.textForm("Price:", this.state.price, this.changePrice)}
+         {this.textForm("Image Thumbnail Url:", this.state.imageThumb, this.changeImageThumb)}
+         {this.textForm("Image Url:", this.state.imageUrl, this.changeImageUrl)}
+         {this.textForm("Description:", this.state.description, this.changeDescription)}
+         <input type="submit" value="Submit" />
+      </form>
+   }
+
+   textForm(label, value, onChange) {
+      return <div className = "form-group"> 
+      <label>
+         {label}
+      </label>
+         <input type="text" className = "form-control" value={value} onChange={onChange} />
+      </div>
+   }
+
+   submit(event) {
+      this.props.submit.invoke(this.getEnteredProduct());
+      event.preventDefault();
    }
 }

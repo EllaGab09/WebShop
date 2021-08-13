@@ -29,9 +29,9 @@ export class MockProductService {
       // console.log("Could not find any product with id", id);  
    }
 
-   addProduct(product, onComplete) {
+   addProduct(product, onComplete = null) {
       this.products.push(product);
-      onComplete();
+      if (onComplete != null) onComplete();
    }
 
    editProduct(product, onComplete) {
