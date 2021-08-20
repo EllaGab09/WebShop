@@ -80,7 +80,7 @@ export class AdminPage extends Component {
    }
 
    setBodyToRenderUser(userName) {
-      console.log("Opening edit for user", userName);
+      // console.log("Opening edit for user", userName);
       this.setState({displayedPage: <EditUser 
          services={this.props.services} 
          userId={userName} 

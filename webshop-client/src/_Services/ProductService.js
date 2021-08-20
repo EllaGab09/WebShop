@@ -1,16 +1,24 @@
+import {Action} from '../Library';
 
 export class ProductService {
    apiUrl;
    endpoints; // GetAllProducts | GetProductDetails + ProductId
+   onProductsUpdated;
+   baseProducts = [];
 
    constructor(apiUrl, endpoints) {
       this.apiUrl = apiUrl;
       this.endpoints = endpoints;
+      this.onProductsUpdated = new Action();
+      this.onProductsUpdated.add((products)=>console.log(products), this);
+      this.onProductsUpdated.add((products)=>this.baseProducts = products, this);
    }
 
    getProducts(onComplete) {
       const requestUrl = this.apiUrl + this.endpoints.getAllProducts;
       let request = new Request(requestUrl);
+      const onProductsUpdated = this.onProductsUpdated;
+
       fetch(request)
          .then(function (response) {
             if (!response.ok) {
@@ -19,6 +27,7 @@ export class ProductService {
             return response.json();
          })
          .then(function (response) {
+            onProductsUpdated.invoke(response);
             onComplete(response);
          });
    }
@@ -34,7 +43,7 @@ export class ProductService {
          headers: headers
       };
       let request = new Request(requestUrl, requestSettings);
-
+      let baseProduct = this.getBaseProductWithId(productId);
       fetch(request)
          .then(function (response) {
             if (!response.ok) {
@@ -43,13 +52,17 @@ export class ProductService {
             return response.json();
          })
          .then(function (response) {
+            if (baseProduct !== null) {
+               response.name = baseProduct.name;
+               response.price = baseProduct.price;
+               response.imageUrl = baseProduct.imageUrl;
+            }
             onComplete(response);
          });
    }
 
    addProduct(product, onComplete = null) {
       const requestUrl = this.apiUrl + this.endpoints.createProduct;
-      // var price = product.parseFloat(product.price);
       const body = JSON.stringify({
          name: product.name, 
          price: product.price,
@@ -64,7 +77,7 @@ export class ProductService {
          headers: headers
       };
       let request = new Request(requestUrl, requestSettings);
-
+      
       fetch(request)
          .then(function (response) {
             if (!response.ok) {
@@ -74,6 +87,7 @@ export class ProductService {
          })
          .then(function (response) {
             if (onComplete != null) onComplete();
+
          });
    }
 
@@ -119,6 +133,7 @@ export class ProductService {
          headers: headers
       };
       let request = new Request(requestUrl, requestSettings);
+      const onProductsUpdated = this.onProductsUpdated;
 
       fetch(request)
          .then(function (response) {
@@ -130,6 +145,12 @@ export class ProductService {
          .then(function (response) {
             if (onComplete != null) onComplete();
          });
-      
+   }
+
+   getBaseProductWithId(productId) {
+      for(let n = 0; n < this.baseProducts.length; n++) {
+         if (this.baseProducts[n].id === productId) return this.baseProducts[n];
+      }
+      return null;
    }
 }

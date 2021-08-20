@@ -5,9 +5,10 @@ import {ProductForm} from './ProductForm';
 export class EditProduct extends Component {
    onSubmit = new Delegate(this, this.submit);
    loaded = false;
+   
    constructor(props) {
       super(props);
-      this.state={product:null}
+      this.state={product:null};
       this.setProduct = this.setProduct.bind(this);
    }
 
@@ -39,6 +40,7 @@ export class EditProduct extends Component {
    }
 
    setProduct(product) {
+      console.log("Setting product:", product);
       this.loaded=true;
       this.setState({product:product});
    }

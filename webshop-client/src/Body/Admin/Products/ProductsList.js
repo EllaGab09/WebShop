@@ -8,6 +8,7 @@ export class ProductsList extends Component {
 
    editClicked = new Action();
    deleteClicked = new Action();
+   productsUpdated;
 
    constructor(props) {
       super(props);
@@ -23,6 +24,10 @@ export class ProductsList extends Component {
 
    componentDidMount() {
       this.loadProducts();
+   }
+
+   componentWillUnmount() {
+      this.unloadProducts();
    }
 
    render() {
@@ -43,6 +48,7 @@ export class ProductsList extends Component {
 
    setProducts(products) {
       this.loaded = true;
+      console.log("Setting products", products);
       this.setState({ products: products });
    }
 
@@ -60,5 +66,11 @@ export class ProductsList extends Component {
    loadProducts() {
       const productService = this.props.productService;
       productService.getProducts(this.setProducts);
+      this.productsUpdated = productService.onProductsUpdated.add(this.setProducts, this);
+   }
+
+   unloadProducts() {
+      const productService = this.props.productService;
+      productService.onProductsUpdated.remove(this.productsUpdated);
    }
 }

@@ -28,17 +28,26 @@ export class LoginForm extends Component {
    render() {
       return <form onSubmit={this.submit} className = "w-25 center">
          {this.textForm("Name:", this.state.userName, this.changeName)}
-         {this.textForm("Password:", this.state.password, this.changePassword)}
+         {this.passwordForm("Password:", this.state.password, this.changePassword)}
          <input type="submit" value="Submit" />
       </form>
    }
 
    textForm(label, value, onChange) {
-      return <div className = "form-group"> 
-      <label>
-         {label}
-      </label>
-         <input type="text" className = "form-control" value={value} onChange={onChange} />
+      return <div className = "form-group">
+         <label>
+            {label}
+         </label>
+            <input type="text" className = "form-control" value={value} onChange={onChange} />
       </div>
+   }
+
+   passwordForm(label, value, onChange) {
+      return <div className = "form-group">
+         <label>
+            {label}
+         </label>
+            <input type="password" className = "form-control" value={value} onChange={onChange} />
+         </div>
    }
 }

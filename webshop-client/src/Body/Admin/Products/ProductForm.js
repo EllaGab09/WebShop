@@ -24,11 +24,11 @@ export class ProductForm extends Component {
       if (this.props.existingProduct != null) {
          const product = this.props.existingProduct;
          this.setState({
-            name: product.name,
-            price: product.price,
-            imageThumb: product.imageThumb,
-            imageUrl: product.imageUrl,
-            description: product.description
+            name: this.validateString(product.name, "Null"),
+            price: this.validateInteger(product.price, 0),
+            imageThumb: this.validateString(product.imageThumb, ""),
+            imageUrl: this.validateString(product.imageUrl, ""),
+            description: this.validateString(product.description, "")
          });
       }
    }
@@ -74,7 +74,27 @@ export class ProductForm extends Component {
    }
 
    submit(event) {
-      this.props.submit.invoke(this.getEnteredProduct());
+      const enteredValues = this.getEnteredProduct();
+      let submitValues = {
+         name: this.validateString(enteredValues.name, "Null"),
+         price: this.validateInteger(enteredValues.price, 0),
+         imageThumb: this.validateString(enteredValues.imageThumb, ""),
+         imageUrl: this.validateString(enteredValues.imageUrl, ""),
+         description: this.validateString(enteredValues.description, "Null Description")
+      };
+
+      this.props.submit.invoke(submitValues);
       event.preventDefault();
+   }
+
+   validateString(value, defaultValue) {
+      if (value === "" || value === null || value === undefined) value = defaultValue;
+      return value;
+   }
+
+   validateInteger(value, defaultValue) {
+      if (value === null || value === undefined) value = "0";
+      var intValue = parseInt(value);
+      return intValue === NaN ? defaultValue : intValue;
    }
 }
